@@ -5,12 +5,20 @@ create_users_table = "CREATE TABLE IF NOT EXISTS users(" \
               "id        INTEGER PRIMARY KEY AUTOINCREMENT," \
               "firstname TEXT    NOT NULL," \
               "lastname  TEXT," \
-              "username  TEXT    UNIQUE NOT NULL," \
-              "password  TEXT    NOT NULL)"
-
-login_user = "SELECT * FROM users WHERE username=? AND password=?"
+              "username  TEXT    UNIQUE NOT NULL)" \
 
 register_user = "INSERT INTO users(firstname, lastname, username, password) VALUES (?,?,?,?);"
+
+#################################################################################
+# creds table
+#################################################################################
+create_creds_table = "CREATE TABLE IF NOT EXISTS creds(" \
+                  "user TEXT UNIQUE," \
+                  "pass TEXT," \
+                  "CONSTRAINT fk_creds FOREIGN KEY (user) " \
+                  "REFERENCES users(username) ON DELETE CASCADE)"
+
+login_user = "SELECT users.* FROM users, creds WHERE username=user AND username=? AND pass=?"
 
 #################################################################################
 # campaigns table
