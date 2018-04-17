@@ -39,6 +39,8 @@ def login():
     con = sql.connect("DM.db")
     con.row_factory = dict_factory
     cur = con.cursor()
+    cur.execute(schema.create_users_table)
+    cur.execute(schema.create_creds_table)
     cur.execute(schema.login_user, (user,password))
     temp = cur.fetchone()
     cur.close()
