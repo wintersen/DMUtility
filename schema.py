@@ -7,7 +7,7 @@ create_users_table = "CREATE TABLE IF NOT EXISTS users(" \
               "lastname  TEXT," \
               "username  TEXT    UNIQUE NOT NULL)" \
 
-register_user = "INSERT INTO users(firstname, lastname, username, password) VALUES (?,?,?,?);"
+register_user = "INSERT INTO users(firstname, lastname, username) VALUES (?,?,?);"
 
 #################################################################################
 # creds table
@@ -18,7 +18,7 @@ create_creds_table = "CREATE TABLE IF NOT EXISTS creds(" \
                   "CONSTRAINT fk_creds FOREIGN KEY (user) " \
                   "REFERENCES users(username) ON DELETE CASCADE)"
 
-add_cred = "INSERT INTO creds(user, pass) VALUES (?, ?);"
+add_cred = "INSERT INTO creds(user, pass) VALUES (?,?);"
 
 login_user = "SELECT users.* FROM users, creds WHERE username=user AND username=? AND pass=?"
 
@@ -27,11 +27,11 @@ login_user = "SELECT users.* FROM users, creds WHERE username=user AND username=
 #################################################################################
 create_campaigns_table = "CREATE TABLE IF NOT EXISTS campaigns(" \
                 "id           INTEGER PRIMARY KEY AUTOINCREMENT," \
-                "owner        TEXT," \
+                "owner        INTEGER," \
                 "name         TEXT    NOT NULL," \
                 "status       TEXT    NOT NULL," \
                 "CONSTRAINT fk_campaigns FOREIGN KEY (owner) " \
-                "REFERENCES users(username) ON DELETE CASCADE)"
+                "REFERENCES users(id) ON DELETE CASCADE)"
 
 new_campaign = "INSERT INTO campaigns(owner, name, status) VALUES (?,?,'not started');"
 
