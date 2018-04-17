@@ -1,7 +1,7 @@
 $(document).ready(function(){
     // $('#homeComponent').hide();
-    $('#itHome').hide();
-    $('#userHome').hide();
+    // $('#itHome').hide();
+    // $('#userHome').hide();
     $('#Login').on('click', function() {
         $.ajax({
             url: '/login',
@@ -14,14 +14,7 @@ $(document).ready(function(){
                     $('#loginComponent').hide();
                     let user = JSON.parse(localStorage.getItem('userdata'));
                     console.log(user);
-                    if (user.role.toUpperCase() === 'IT') {
-                        $('#itHome').show();
-                        getUnassignedTable();
-                    }
-                    else
-                        $('#userHome').show();
-                    populateUser();
-                    getAssignedTable();
+                    getCampaignTable();
                 }else{
                     $('#errorMessageLogin').text('Incorrect email and/or password.')
                 }
@@ -51,99 +44,49 @@ $(document).ready(function(){
             }
         });
     });
-    $('#EventSubmit').on('click', function() {
+    
+    // get campaign list
+    function getCampaignTable(){
+        // tempuser = localStorage.getItem('userdata');
+        // let parseduser;
+        // if (tempuser) {
+        //     parseduser = JSON.parse(tempuser);
+        //     let uid
+        // }
         $.ajax({
-            url: '/newEvent',
-            data: $('#newEventForm').serialize(),
-            type: 'POST',
+            url: '/campaigns',
+            type: 'GET',
             success: function(response) {
-                console.log(response);
+                $('#CampaignTableBody').empty();
+                response.campaigns.forEach(function(val){
+                    $('#CampaignTableBody').append("<tr><td>" + val.id + "</td><td>" + val.name + "</td><td>" + val.status + "</td></tr>");
+                });
             },
             error: function(error) {
                 console.log(error);
             }
         });
-    });
-    //For itHome
-    $('#EventSubmit').on('click', function() {
-        let user3 = JSON.parse(localStorage.getItem('userdata'));
-        let tempForm1 = {
-            username: user3.username,
-            eventName: $('#eventName').val(),
-            eventTime: $('#eventTime').val(),
-            eventUrl: $('#eventUrl').val()
-        };
-    });
-    //For userHome
-    $('#submitTicket').on('click', function() {
-          $.ajax({
-            url: '/newTicket',
-           data: $('#formSubmitTicket').serialize(),
-            type: 'POST',
-            success: function(response) {
-                console.log(response);
-                if(response.newticket === true){
-                    $('#myForm').trigger("reset");
-                    $('#errorMessageReg').text('Ticket submission successful!');
-                    getAssignedTable();
-                }else{
-                    $('#errorMessageReg').text('Ticket submission failed. Try again.');
-                }
-            },
-            error: function(error) {
-                console.log(error);
-            }
-        });
-    }); 
-
-    $('#AssignTicket').on('click', function() {
-        $.ajax({
-            url: '/assignTicket',
-            data: $('#form-assign-ticket').serialize(),
-            type: 'POST',
-            success: function(response) {
-                console.log(response);
-                if (response.assign_it === true){
-                    $('#form-assign-ticket').trigger("reset");
-                    $('#errorMessageAssign').text('Ticket assign successful!');
-                    getAssignedTable();
-                    getUnassignedTable();
-                }else{
-                    $('#errorMessageAssign').text('Ticket assignment failed. Try again.');
-                }
-            },
-            error: function(error) {
-                console.log(error);
-            }
-        })
-    })
-
-    function populateUser(){
-        let user = JSON.parse(localStorage.getItem('userdata'));
-        console.log(user);
-        $('.greeting').append(user.firstName);
     }
 
-    function getAssignedTable(){
-        tempuser = localStorage.getItem('userdata');
-        let parseduser;
-        if (tempuser) {
-            parseduser = JSON.parse(tempuser);
-            let user = parseduser.username;
+    // get notes for campaign
+    function getNotesTable(){
+        tempcid = localStorage.getItem('cid');
+        let parsedcid;
+        if (tempcid) {
+            parsedcid = JSON.parse(tempcid);
+            let cid = parsedcid.cid;
             $.ajax({
-                url: '/getAssigned',
+                url: '/notes',
                 data: {
-                    temp: user
+                    cid: cid
                 },
-                contentType: 'application/json',
-                dataType: 'json',
-                type: 'POST',
+                contentType: "application/json",
+                dataType: "json",
+                type: 'GET',
                 success: function(response) {
-                    // $('#PopulateTable').hide();
-                    $('.eventTableBody').empty();
-                    localStorage.setItem('userevents', JSON.stringify(response.assignedtickets));
-                    response.assignedtickets.forEach(function(val){
-                        $('.eventTableBody').append("<tr><td>" + val.id + "</td><td>" + val.date_opened + "</td><td>" + val.date_closed + "</td><td>" + val.status + "</td><td>" + val.reported_by + "</td><td>" + val.assigned_to + "</td><td>" + val.issue + "</td><td>" + val.user_comment + "</td><td>" + val.IT_comment + "</td></tr>");
+                    $('#NotesTableBody').empty();
+                    response.notes.forEach(function(val){
+                        $('#NotesTableBody').append("<tr><td>" + val.id + "</td><td>" + val.name + "</td><td>" + val.content + "</td></tr>");
                     });
                 },
                 error: function(error) {
@@ -153,22 +96,81 @@ $(document).ready(function(){
         }
     }
 
-    function getUnassignedTable(){
-        tempuser = localStorage.getItem('userdata');
-        let pardeduser;
-        if (tempuser) {
-            parseduser = JSON.parse(tempuser);
+    function getNPCTable(){
+        tempcid = localStorage.getItem('cid');
+        let parsedcid;
+        if (tempcid) {
+            parsedcid = JSON.parse(tempcid);
+            let cid = parsedcid.cid;
             $.ajax({
-                url: '/getUnassigned',
-                type: 'POST',
+                url: '/npcs',
+                data: {
+                    cid: cid
+                },
+                contentType: "application/json",
+                dataType: "json",
+                type: 'GET',
                 success: function(response) {
-                    $('#unassignedTableBody').empty();
-                    localStorage.setItem('userevents', JSON.stringify(response.unassignedtickets));
-                    response.unassignedtickets.forEach(function(val){
-                        $('#unassignedTableBody').append("<tr><td>" + val.id + "</td><td>" + val.date_opened + "</td><td>" + val.status + "</td><td>" + val.reported_by + "</td><td>" + val.issue + "</td><td>" + val.user_comment + "</td></tr>");
+                    $('#NPCTableBody').empty();
+                    response.npcs.forEach(function(val){
+                        $('#NPCTableBody').append("<tr><td>" + val.id + "</td><td>" + val.name + "</td><td>" + val.occupation + "</td><td>" + val.description + "</td><td>" + val.traits + "</td><td>" + val.race + "</td><td>" + val.alignment + "</td><td>" + val.note + "</td><td>" + val.str + "</td><td>" + val.dex + "</td><td>" + val.con + "</td><td>" + val.int + "</td><td>" + val.wis + "</td><td>" + val.chr + "</td><td>" + val.ac + "</td><td>" + val.hp + "</td></tr>");
                     });
                 },
-                error: function(error){
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        }
+    }
+
+    function getMonsterTable(){
+        tempcid = localStorage.getItem('cid');
+        let parsedcid;
+        if (tempcid) {
+            parsedcid = JSON.parse(tempcid);
+            let cid = parsedcid.cid;
+            $.ajax({
+                url: '/monsters',
+                data: {
+                    cid: cid
+                },
+                contentType: "application/json",
+                dataType: "json",
+                type: 'GET',
+                success: function(response) {
+                    $('#MonsterTableBody').empty();
+                    response.npcs.forEach(function(val){
+                        $('#MonsterTableBody').append("<tr><td>" + val.id + "</td><td>" + val.name + "</td><td>" + val.equipment + "</td><td>" + val.note + "</td><td>" + val.str + "</td><td>" + val.dex + "</td><td>" + val.con + "</td><td>" + val.int + "</td><td>" + val.wis + "</td><td>" + val.chr + "</td><td>" + val.ac + "</td><td>" + val.hp + "</td></tr>");
+                    });
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        }
+    }
+
+    function getLocationTable(){
+        tempcid = localStorage.getItem('cid');
+        let parsedcid;
+        if (tempcid) {
+            parsedcid = JSON.parse(tempcid);
+            let cid = parsedcid.cid;
+            $.ajax({
+                url: '/locations',
+                data: {
+                    cid: cid
+                },
+                contentType: "application/json",
+                dataType: "json",
+                type: 'GET',
+                success: function(response) {
+                    $('#LocationTableBody').empty();
+                    response.npcs.forEach(function(val){
+                        $('#LocationTableBody').append("<tr><td>" + val.id + "</td><td>" + val.name + "</td><td>" + val.xcoord + "</td><td>" + val.ycoord + "</td><td>" + val.description + "</td><td>" + val.note + "</td><td>" + val.services + "</td></tr>");
+                    });
+                },
+                error: function(error) {
                     console.log(error);
                 }
             });
