@@ -2,19 +2,19 @@ $(document).ready(function(){
     // $('#homeComponent').hide();
     // $('#itHome').hide();
     // $('#userHome').hide();
-    $('#Login').on('click', function() {
+    $('#login-button').on('click', function() {
         $.ajax({
             url: '/login',
-            data: $('#formLogin').serialize(),
+            data: $('#login-form').serialize(),
             type: 'POST',
             success: function(response) {
                 console.log(response);
                 if(response.auth === true){
                     localStorage.setItem('userdata', JSON.stringify(response.user));
-                    $('#loginComponent').hide();
+                    $('#login-modal').hide();
                     let user = JSON.parse(localStorage.getItem('userdata'));
                     console.log(user);
-                    getCampaignTable();
+                    // getCampaignTable();
                 }else{
                     $('#errorMessageLogin').text('Incorrect email and/or password.')
                 }

@@ -14,6 +14,7 @@ DEVELOPED BY KHEPRICODE
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
   <link href="https://fonts.googleapis.com/css?family=MedievalSharp" rel="stylesheet">
   <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}" type="text/css" />
   <link href="{{ url_for('static', filename='images/favicon.ico') }}" rel="icon" type="image/x-icon" />
@@ -46,11 +47,15 @@ DEVELOPED BY KHEPRICODE
         </button>
       </div>
       <div class="modal-body">
-        LOG IN
+        <form class="form-signin" id='login-form' role="form">
+          <input type="text" name="username" class="form-control" placeholder="Username" required autofocus value="">
+          <input type="password" name="password" class="form-control" placeholder="Password" required value="">
+          <span id='errorMessageLogin'></span>
+        </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" id='close-login-button'>Close</button>
+        <button type="button" class="btn btn-primary" id='login-button'>Login</button>
       </div>
     </div>
   </div>
