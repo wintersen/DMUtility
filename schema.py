@@ -93,7 +93,7 @@ get_npcs = "SELECT * FROM npcs WHERE campaign_id=?"
 
 delete_npc = "DELETE FROM npcs WHERE id=?"
 
-edit_npc = "UPDATE npcs SET loc_id=?, name=?, occupation=?, description=?, traits=?, race=?, alignment=?, note=?, str=?, dex=?, int=?, wis=?, chr=?, ac=?, hp=? WHERE id=?"
+edit_npc = "UPDATE npcs SET loc_id=?, name=?, occupation=?, description=?, traits=?, race=?, alignment=?, note=?, str=?, dex=?, con=?, int=?, wis=?, chr=?, ac=?, hp=? WHERE id=?"
 
 set_npc_loc = "UPDATE npcs SET loc_id=? WHERE id=?"
 

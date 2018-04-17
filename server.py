@@ -42,8 +42,8 @@ def login():
     cur.execute(schema.login_user, (user,password))
     temp = cur.fetchone()
     cur.close()
-    # if user and password are not in users table, error message appears
-    if user == temp['username']:
+    # if user and password are not in creds table, error message appears
+    if temp is not None:
         session['username'] = user
         session['uid'] = temp['id']
         return jsonify({
@@ -209,7 +209,7 @@ def delete_note():
         'deleted': True
     })
 
-# edit note content
+# edit note
 @app.route('/editNote', methods=['POST'])
 def edit_note():
     nid = request.form['nid']
@@ -218,7 +218,7 @@ def edit_note():
     con = sql.connect("DM.db", timeout=10)
     con.row_factory = dict_factory
     cur = con.cursor()
-    cur.execute(schema.editNote, (name, content, nid))
+    cur.execute(schema.edit_note, (name, content, nid))
     con.commit()
     cur.close()
     con.close()
@@ -409,7 +409,7 @@ def edit_monster():
     con.row_factory = dict_factory
     cur = con.cursor()
     cur.execute(schema.create_monsters_table)
-    cur.execute(schema.edit_monster, (name, equipment, note, strength, dex, scon, intel, wis, char, ac, hp))
+    cur.execute(schema.edit_monster, (name, equipment, note, strength, dex, scon, intel, wis, char, ac, hp, mid))
     con.commit()
     cur.close()
     con.close()
