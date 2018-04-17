@@ -58,6 +58,8 @@ get_notes = "SELECT * FROM notes WHERE campaign_id=?"
 
 delete_note = "DELETE FROM notes WHERE id=?"
 
+edit_note = "UPDATE notes SET name=?, content=? WHERE id=?"
+
 edit_note_content = "UPDATE notes SET content=? WHERE id=?"
 
 #################################################################################
@@ -90,6 +92,8 @@ new_npc = "INSERT INTO npcs(campaign_id, loc_id, name, occupation, description, 
 get_npcs = "SELECT * FROM npcs WHERE campaign_id=?"
 
 delete_npc = "DELETE FROM npcs WHERE id=?"
+
+edit_npc = "UPDATE npcs SET loc_id=?, name=?, occupation=?, description=?, traits=?, race=?, alignment=?, note=?, str=?, dex=?, int=?, wis=?, chr=?, ac=?, hp=? WHERE id=?"
 
 set_npc_loc = "UPDATE npcs SET loc_id=? WHERE id=?"
 
@@ -139,33 +143,35 @@ create_monsters_table = "CREATE TABLE IF NOT EXISTS monsters(" \
                   "CONSTRAINT fk_monsters FOREIGN KEY (campaign_id) " \
                   "REFERENCES campaigns(id) ON DELETE CASCADE)"
 
-new_monster = "INSERT INTO monsters(campaign_id, name, note, str, dex, con, int, wis, chr, ac, hp) VALUES (?,?,?,?,?,?,?,?,?,?,?)"
+new_monster = "INSERT INTO monsters(campaign_id, name, note, equipment, str, dex, con, int, wis, chr, ac, hp) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)"
 
 get_monsters = "SELECT * FROM monsters WHERE campaign_id=?"
 
 delete_monster = "DELETE FROM monsters WHERE id=?"
 
+edit_monster = "UPDATE monsters SET name=?, equipment=?, note=?, str=?, dex=?, con=?, int=?, wis=?, chr=?, ac=?, hp=? WHERE id=?"
+
 set_monster_equipment = "UPDATE monsters SET equipment=? WHERE id=?"
 
-set_npc_note = "UPDATE monsters SET note=? WHERE id=?"
+set_monster_note = "UPDATE monsters SET note=? WHERE id=?"
 
-set_npc_stats = "UPDATE monsters SET str=?, dex=?, con=?, int=?, wis=?, chr=?, ac=?, hp=? WHERE id=?"
+set_monster_stats = "UPDATE monsters SET str=?, dex=?, con=?, int=?, wis=?, chr=?, ac=?, hp=? WHERE id=?"
 
-set_npc_str = "UPDATE monsters SET str=? WHERE id=?"
+set_monster_str = "UPDATE monsters SET str=? WHERE id=?"
 
-set_npc_dex = "UPDATE monsters SET dex=? WHERE id=?"
+set_monster_dex = "UPDATE monsters SET dex=? WHERE id=?"
 
-set_npc_con = "UPDATE monsters SET con=? WHERE id=?"
+set_monster_con = "UPDATE monsters SET con=? WHERE id=?"
 
-set_npc_int = "UPDATE monsters SET int=? WHERE id=?"
+set_monster_int = "UPDATE monsters SET int=? WHERE id=?"
 
-set_npc_wis = "UPDATE monsters SET wis=? WHERE id=?"
+set_monster_wis = "UPDATE monsters SET wis=? WHERE id=?"
 
-set_npc_chr = "UPDATE monsters SET chr=? WHERE id=?"
+set_monster_chr = "UPDATE monsters SET chr=? WHERE id=?"
 
-set_npc_ac = "UPDATE monsters SET ac=? WHERE id=?"
+set_monster_ac = "UPDATE monsters SET ac=? WHERE id=?"
 
-set_npc_hp = "UPDATE monsters SET hp=? WHERE id=?"
+set_monster_hp = "UPDATE monsters SET hp=? WHERE id=?"
 
 #################################################################################
 # locations table
@@ -187,6 +193,8 @@ new_loc = "INSERT INTO locations(campaign_id, name, xcoord, ycoord, description,
 get_locs = "SELECT * FROM locations WHERE campaign_id=?"
 
 delete_loc = "DELETE FROM locations WHERE id=?"
+
+edit_loc = "UPDATE locations SET name=?, xcoord=?, ycoord=?, description=?, note=?, services=? WHERE id=?"
 
 set_loc_description = "UPDATE locations SET description=? WHERE id=?"
 
