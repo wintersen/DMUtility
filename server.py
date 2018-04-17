@@ -65,11 +65,11 @@ def register():
     password = request.form['passwordreg']
     passwordconf = request.form['passwordconfreg']
     if password == passwordconf:
-	    con = sql.connect("DM.db", timeout=10)
-	    con.row_factory = dict_factory
-	    cur = con.cursor()
-	    cur.execute(schema.create_users_table)
-	    cur.execute(schema.create_creds_table)
+        con = sql.connect("DM.db", timeout=10)
+        con.row_factory = dict_factory
+        cur = con.cursor()
+        cur.execute(schema.create_users_table)
+        cur.execute(schema.create_creds_table)
         cur.execute(schema.register_user, (first, last, user))
         cur.execute(schema.add_cred, (user, password))
         con.commit()
@@ -90,7 +90,7 @@ def register():
 # gets all campaigns for a user
 @app.route('/campaigns', methods=['GET'])
 def get_campaigns():
-	uid = session['uid']
+    uid = session['uid']
     con = sql.connect("DM.db", timeout=10)
     con.row_factory = dict_factory
     cur = con.cursor()
@@ -141,8 +141,8 @@ def delete_campaign():
 # updates a campaign status
 @app.route('/setCampaignStatus', methods=['PUT'])
 def set_campaign_status():
-	cid = request.form['cid']
-	status = request.form['request']
+    cid = request.form['cid']
+    status = request.form['request']
     con = sql.connect("DM.db", timeout=10)
     con.row_factory = dict_factory
     cur = con.cursor()
@@ -422,7 +422,7 @@ def edit_monster():
 #################################################################################
 
 # get locations by campaign
-@app.route('locations', methods=['GET'])
+@app.route('/locations', methods=['GET'])
 def get_locations():
     cid = request.form['cid']
     con = sql.connect("DM.db", timeout=10)
