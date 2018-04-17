@@ -70,7 +70,7 @@ $(document).ready(function(){
                 $('#CampaignTableBody').empty();
                 response.campaigns.forEach(function(val){
                     // $('#CampaignTableBody').append("<tr><td>" + val.id + "</td><td>" + val.name + "</td><td>" + val.status + "</td></tr>");
-                    $('#CampaignTableBody').append("<tr><button id='campaign-button-" + val.id + "' type='button' class='btn btn-secondary btn-lg btn-block'><div class='row text-center'><div class='col-sm-4'>" + val.name + "</div><div class='col-sm-4'>" + val.status + "</div></div></button></tr>");
+                    $('#CampaignTableBody').append("<button type='button' class='btn btn-secondary brn-lg brn-block'><div class='row text-center'><div class='col-sm-4'>" + val.name + "</div><div class='col-sm-4'>" + val.status + "</div></div></button>");
                 });
             },
             error: function(error) {
