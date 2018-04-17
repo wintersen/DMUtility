@@ -89,7 +89,7 @@ DEVELOPED BY KHEPRICODE
 </div>
 
 <!-- CAMPAIGN SELECTION PAGE -->
-<div id = "campaignselect" style="display:none">
+<div id = "campaignselect" style="display:">
     <!-- TOP DESIGN -->
     <div style="min-height: vh"></div>
     <div class="jumbotron jumbotron-fluid text-center" style="background-color: beige; font-size: 35px; font-weight: 600">
@@ -115,12 +115,102 @@ DEVELOPED BY KHEPRICODE
         </button>
         <div class="container" id="CampaignTableBody"></div>
         <div class="row" style="margin-top:10vh; margin-bottom:10vh">
-            <button type="button" class="btn btn-primary btn-lg btn-block">Create New Campaign</button>
+            <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#campaignModal">Create New Campaign</button>
         </div>
     </div>
 
     <!-- BOTTOM DESIGN -->
     <div style="bottom:0; left:0; width:100%; min-height: 10vh; margin-top: 10vh;"></div>
+    
+    <!-- CREATE CAMPAIGN MODAL -->
+    <div class="modal fade" id="campaignModal" tabindex="-1" role="dialog" aria-labelledby="campaignModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="campaignModalLabel">CREATE YOUR CAMPAIGN</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form class="form-campaign" id='campaign-form' role="form">
+              <input type="text" name="titlecmp" class="form-control" placeholder="Campaign Title" required autofocus value="">
+              <font color="FF0000"><span id='errorMessageReg'></span></font>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick='$("#campaign-form")[0].reset(); $("#errorMessageReg").empty()'>Close</button>
+            <button type="button" class="btn btn-primary">Create</button>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+    
+<!-- CAMPAIGN HOME PAGE -->
+<div id = "home" style="display:">
+    <div class="container">
+        <div class="row" style="margin-bottom: 2vh">
+            <div class="col-sm-7" id="map">
+                <div class="card"><div class="card-body">
+                    MAP
+                </div></div>
+            </div>
+            <div class="col-sm-5" id="notes">
+                <div class="card">
+                    <div class="card-header">NOTES</div>
+                    <div class="card-body">
+                    <div id="accordion">
+                      <div class="card">
+                        <div class="card-header" id="headingOne">
+                          <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#noteCollapse" aria-expanded="false" aria-controls="noteCollapse">
+                              NOTE 1
+                            </button>
+                          </h5>
+                        </div>
+                        <div id="noteCollapse" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                          <div class="card-body">
+                            note body
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6" id="npcs">
+                <div class="card">
+                    <div class="card-header">NPCS</div>
+                    <div class="card-body">
+                    <div id="accordion">
+                      <div class="card">
+                        <div class="card-header" id="heading2">
+                          <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#npc1" aria-expanded="false" aria-controls="npc1">
+                              NPC 1
+                            </button>
+                          </h5>
+                        </div>
+                        <div id="npc1" class="collapse show" aria-labelledby="heading2" data-parent="#accordion">
+                          <div class="card-body">
+                            note body
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6" id="monsters">
+                <div class="card"><div class="card-body">
+                    monsters
+                </div></div>
+            </div>
+        </div>
+    </div>
 </div>
 
 
