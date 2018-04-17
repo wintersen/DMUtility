@@ -11,12 +11,13 @@ $(document).ready(function(){
                 console.log(response);
                 if(response.auth === true){
                     localStorage.setItem('userdata', JSON.stringify(response.user));
-                    $('#login-modal').hide();
+                    $('#loginModal').hide();
+                    $('.modal-backdrop').hide();
                     let user = JSON.parse(localStorage.getItem('userdata'));
                     console.log(user);
                     $('#login').hide();
                     $('#campaignselect').show();
-                    // getCampaignTable();
+                    getCampaignTable();
                 }else{
                     $('#errorMessageLogin').text('Username and password do not match.');
                 }
