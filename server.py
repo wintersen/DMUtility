@@ -110,7 +110,7 @@ def get_campaigns():
     con.row_factory = dict_factory
     cur = con.cursor()
     cur.execute(schema.create_campaigns_table)
-    cur.execute(schema.get_campaigns, (uid))
+    cur.execute(schema.get_campaigns, (str(uid)))
     campaign_data = cur.fetchall()
     con.commit()
     cur.close()
@@ -129,7 +129,7 @@ def new_campaign():
     cur = con.cursor()
     cur.execute(schema.create_users_table)
     cur.execute(schema.create_campaigns_table)
-    cur.execute(schema.new_campaign, (uid, name))
+    cur.execute(schema.new_campaign, (str(uid), name))
     con.commit()
     cur.close()
     con.close()
@@ -145,7 +145,7 @@ def delete_campaign():
     con.row_factory = dict_factory
     cur = con.cursor()
     cur.execute(schema.create_campaigns_table)
-    cur.execute(schema.delete_campaign, (cid))
+    cur.execute(schema.delete_campaign, (str(cid)))
     con.commit()
     cur.close()
     con.close()
