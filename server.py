@@ -25,6 +25,19 @@ def dict_factory(cursor, row):
 
 @app.route("/")
 def main():
+    con = sql.connect("DM.db", timeout=10)
+    con.row_factory = dict_factory
+    cur = con.cursor()
+    cur.execute(schema.create_users_table)
+    cur.execute(schema.create_creds_table)
+    cur.execute(schema.create_campaigns_table)
+    cur.execute(schema.create_notes_table)
+    cur.execute(schema.create_npcs_table)
+    cur.execute(schema.create_monsters_table)
+    cur.execute(schema.create_locations_table)
+    con.commit()
+    cur.close()
+    con.close()
     return render_template('/index.html')
 
 #################################################################################

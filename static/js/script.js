@@ -14,9 +14,11 @@ $(document).ready(function(){
                     $('#login-modal').hide();
                     let user = JSON.parse(localStorage.getItem('userdata'));
                     console.log(user);
+                    $('#login').hide();
+                    $('#campaignselect').show();
                     // getCampaignTable();
                 }else{
-                    $('#errorMessageLogin').text('Username and password do not match.')
+                    $('#errorMessageLogin').text('Username and password do not match.');
                 }
             },
             error: function(error) {
@@ -25,15 +27,15 @@ $(document).ready(function(){
         });
     });
 
-    $('#Register').on('click', function() {
+    $('#register-button').on('click', function() {
         $.ajax({
             url: '/register',
-            data: $('#formRegister').serialize(),
+            data: $('#register-form').serialize(),
             type: 'POST',
             success: function(response) {
                 console.log(response);
                 if(response.registered === true){
-                    $('#myForm').trigger("reset");
+                    $('#register-form').trigger("reset");
                     $('#errorMessageReg').text('Registration successful!')
                 }else{
                     $('#errorMessageReg').text('Registration failed. Try again.')
@@ -66,7 +68,8 @@ $(document).ready(function(){
             success: function(response) {
                 $('#CampaignTableBody').empty();
                 response.campaigns.forEach(function(val){
-                    $('#CampaignTableBody').append("<tr><td>" + val.id + "</td><td>" + val.name + "</td><td>" + val.status + "</td></tr>");
+                    // $('#CampaignTableBody').append("<tr><td>" + val.id + "</td><td>" + val.name + "</td><td>" + val.status + "</td></tr>");
+                    $('#CampaignTableBody').append("<button type='button' class='btn btn-secondary brn-lg brn-block'><div class='row text-center'><div class='col-sm-4'>" + val.name + "</div><div class='col-sm-4'>" + val.status + "</div></div></button>");
                 });
             },
             error: function(error) {

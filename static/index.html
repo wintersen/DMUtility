@@ -82,7 +82,7 @@ DEVELOPED BY KHEPRICODE
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick='$("#register-form")[0].reset(); $("#errorMessageReg").empty()'>Close</button>
-        <button type="button" class="btn btn-primary">Register</button>
+        <button type="button" class="btn btn-primary" id='register-button'>Register</button>
       </div>
     </div>
   </div>
@@ -110,11 +110,10 @@ DEVELOPED BY KHEPRICODE
         <button type="button" class="btn btn-primary btn-lg btn-block">
             <div class="row text-center">
                 <div class="col-sm-4">Name</div>
-                <div class="col-sm-4">Info</div>
                 <div class="col-sm-4">Status</div>
             </div>
         </button>
-
+        <div class="container" id="CampaignTableBody"></div>
         <div class="row" style="margin-top:10vh; margin-bottom:10vh">
             <button type="button" class="btn btn-primary btn-lg btn-block">Create New Campaign</button>
         </div>
