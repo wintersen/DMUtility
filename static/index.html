@@ -54,7 +54,7 @@ DEVELOPED BY KHEPRICODE
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" id='close-login-button' onclick='$("#login-form")[0].reset(); $("#errorMessageLogin").empty()'>Close</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick='$("#login-form")[0].reset(); $("#errorMessageLogin").empty()'>Close</button>
         <button type="button" class="btn btn-primary" id='login-button'>Login</button>
       </div>
     </div>
@@ -71,11 +71,18 @@ DEVELOPED BY KHEPRICODE
         </button>
       </div>
       <div class="modal-body">
-        ...
+        <form class="form-register" id='register-form' role="form">
+          <input type="text" name="firstreg" class="form-control" placeholder="First name" required autofocus value="">
+          <input type="text" name="lastreg" class="form-control" placeholder="Last name" required value="">
+          <input type="text" name="userreg" class="form-control" placeholder="Username" required value="">
+          <input type="password" name="passwordreg" class="form-control" placeholder="Password" required value="">
+          <input type="password" name="passwordconfreg" class="form-control" placeholder="Confirm Password" required value="">
+          <font color="FF0000"><span id='errorMessageReg'></span></font>
+        </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick='$("#register-form")[0].reset(); $("#errorMessageReg").empty()'>Close</button>
+        <button type="button" class="btn btn-primary">Register</button>
       </div>
     </div>
   </div>
