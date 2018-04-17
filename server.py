@@ -87,7 +87,6 @@ def register():
 # campaigns
 #################################################################################
 
-
 # gets all campaigns for a user
 @app.route('/campaigns', methods=['GET'])
 def get_campaigns():
@@ -116,7 +115,6 @@ def new_campaign():
     cur.execute(schema.create_users_table)
     cur.execute(schema.create_campaigns_table)
     cur.execute(schema.new_campaign, (uid, name))
-    assigned_data = cur.fetchall()
     con.commit()
     cur.close()
     con.close()
@@ -127,12 +125,12 @@ def new_campaign():
 # deletes a campaign given the campaign ID
 @app.route('/campaigns', methods=['DELETE'])
 def delete_campaign():
-    id = request.form['cid']
+    cid = request.form['cid']
     con = sql.connect("DM.db", timeout=10)
     con.row_factory = dict_factory
     cur = con.cursor()
     cur.execute(schema.create_campaigns_table)
-    cur.execute(schema.delete_campaign, (id))
+    cur.execute(schema.delete_campaign, (cid))
     con.commit()
     cur.close()
     con.close()
@@ -143,13 +141,13 @@ def delete_campaign():
 # updates a campaign status
 @app.route('/setCampaignStatus', methods=['PUT'])
 def set_campaign_status():
-	id = request.form['cid']
+	cid = request.form['cid']
 	status = request.form['request']
     con = sql.connect("DM.db", timeout=10)
     con.row_factory = dict_factory
     cur = con.cursor()
     cur.execute(schema.create_campaigns_table)
-    cur.execute(schema.set_campaign_status, (status, id))
+    cur.execute(schema.set_campaign_status, (status, cid))
     con.commit()
     cur.close()
     con.close()
@@ -157,6 +155,76 @@ def set_campaign_status():
        'updated': True
     })
 
+#################################################################################
+# notes
+#################################################################################
+
+# gets all notes for a campaign
+@app.route('/notes', methods=['GET'])
+def get_notes():
+    cid = request.form['cid']
+    con = sql.connect("DM.db", timeout=10)
+    con.row_factory = dict_factory
+    cur = con.cursor()
+    cur.execute(schema.create_notes_table)
+    cur.execute(schema.get_notes, (cid))
+    notes = cur.fetchall()
+    con.commit()
+    cur.close()
+    con.close()
+    return jsonify({
+        'notes': notes
+    })
+
+# creates a note for a campaign
+@app.route('/newNote', methods=['POST'])
+def new_note():
+    cid = request.form['cid']
+    name = request.form['name']
+    content = request.form['content']
+    con = sql.connect("DM.db", timeout=10)
+    con.row_factory = dict_factory
+    cur = con.cursor()
+    cur.execute(schema.create_notes_table)
+    cur.execute(schema.new_note, (cid, name, content))
+    con.commit()
+    cur.close()
+    con.close()
+    return jsonify({
+        'created': True
+    })
+
+# delete note
+@app.route('/notes', methods=['DELETE'])
+def delete_note():
+    nid = request.form['nid']
+    con = sql.connect("DM.db", timeout=10)
+    con.row_factory = dict_factory
+    cur = con.cursor()
+    cur.execute(schema.delete_note, (nid))
+    con.commit()
+    cur.close()
+    con.close()
+    return jsonify({
+        'deleted': True
+    })
+
+# edit note content
+@app.route('/editNote', methods=['POST'])
+def edit_note():
+    nid = request.form['nid']
+    name = request.form['name']
+    content = request.form['content']
+    con = sql.connect("DM.db", timeout=10)
+    con.row_factory = dict_factory
+    cur = con.cursor()
+    cur.execute(schema.editNote, (name, content, nid))
+    con.commit()
+    cur.close()
+    con.close()
+    return jsonify({
+        'edited': True
+    })
 
 
 app.secret_key = 'A0Zr76j/3yX R~X0H!jmN]LWX/,?RT'
