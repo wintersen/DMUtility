@@ -16,7 +16,7 @@ $(document).ready(function(){
                     console.log(user);
                     // getCampaignTable();
                 }else{
-                    $('#errorMessageLogin').text('Incorrect email and/or password.')
+                    $('#errorMessageLogin').text('Username and password do not match.')
                 }
             },
             error: function(error) {
