@@ -44,6 +44,13 @@ $(document).ready(function(){
             }
         });
     });
+
+    // make enter submit form
+    $('#login-form input').keydown(function(e) {
+        if (e.keyCode == 13) {
+            $('#login-button').click();
+        }
+    });
     
     // get campaign list
     function getCampaignTable(){
