@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--
+DUNGEON MASTER'S KEEP
+DEVELOPED BY KHEPRICODE
+
+
+-->
+  <title>Dungeon Master's Keep</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=MedievalSharp" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}" type="text/css" />
+  <link href="{{ url_for('static', filename='images/favicon.ico') }}" rel="icon" type="image/x-icon" />
+</head>
+<body>
+
+<!-- LOGIN PAGE -->
+<div id = "login" style = "display:; background-image:url(http://mapinstitute.org/data/wallpapers/139/im57801448.jpg); min-height: 100vh">
+    <!-- TOP DESIGN -->
+    <div style="min-height: 25vh"></div>
+    <div class="jumbotron jumbotron-fluid text-center" style="background-image: url({{ url_for('static', filename='images/main_background.jpg') }});">
+        <h1>Dungeon Master's Keep</h1>
+    </div>
+    <div class = "container text-center">
+        <h3 style="color:beige">Every great story needs a little help with the bookkeeping.</h3>
+        <div class = "row">
+            <div class = "col-sm-6"><button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#loginModal">Login</button></div>
+            <div class = "col-sm-6"><button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#registerModal">Sign Up</button></div>
+        </div>
+    </div>
+</div>
+<!-- LOGIN MODAL -->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="loginModalLabel">ENTER LOGIN INFORMATION</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        LOG IN
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- REGISTER MODAL -->
+<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="registerModalLabel">REGISTER NEW DUNGEON MASTER</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CAMPAIGN SELECTION PAGE -->
+<div id = "campaignselect" style="display:none">
+    <!-- TOP DESIGN -->
+    <div style="min-height: vh"></div>
+    <div class="jumbotron jumbotron-fluid text-center" style="background-color: beige; font-size: 35px; font-weight: 600">
+        <p>Welcome, Dungeon Master.</p> 
+    </div>
+
+    <!-- CAMPAIGN SELECTION -->
+    <div class="container">
+        <div class="row">
+            <h4>Select one of your pre-existing campaigns to enter it or click the button below to begin a new one.</h4>
+        </div>
+    </div>
+        <br/>
+    <div class="container">
+        <div class="row">
+            <h3>In-Progress Campaigns</h3>
+        </div>
+        <button type="button" class="btn btn-primary btn-lg btn-block">
+            <div class="row text-center">
+                <div class="col-sm-4">Name</div>
+                <div class="col-sm-4">Info</div>
+                <div class="col-sm-4">Status</div>
+            </div>
+        </button>
+
+        <div class="row" style="margin-top:10vh; margin-bottom:10vh">
+            <button type="button" class="btn btn-primary btn-lg btn-block">Create New Campaign</button>
+        </div>
+    </div>
+
+    <!-- BOTTOM DESIGN -->
+    <div style="bottom:0; left:0; width:100%; min-height: 10vh; margin-top: 10vh;"></div>
+</div>
+
+
+</body>
+</html>
