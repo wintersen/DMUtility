@@ -31,7 +31,7 @@ def main():
 # login/register
 #################################################################################
 
-
+# login user
 @app.route('/login', methods=['POST'])
 def login():
     user = request.form['username']
@@ -39,19 +39,16 @@ def login():
     con = sql.connect("DM.db")
     con.row_factory = dict_factory
     cur = con.cursor()
-    cur.execute(schema.login_user, (user,))
+    cur.execute(schema.login_user, (user,password))
     temp = cur.fetchone()
     cur.close()
     # if user and password are not in users table, error message appears
-    if user == temp['username'] and password == temp['password']:
+    if user == temp['username']:
         session['username'] = user
+        session['uid'] = temp['id']
         return jsonify({
             'auth': True,
-            'user': {
-                "username": user,
-                "firstName": temp["firstname"],
-                "lastName": temp["lastname"], 
-            }
+            'user': temp,
         })
     else:
         return jsonify({
@@ -59,20 +56,22 @@ def login():
         })
 
 
+# Register user
 @app.route('/register', methods=['POST'])
 def register():
     first = request.form['firstreg']
     last = request.form['lastreg']
-    role = request.form['rolereg']
     user = request.form['userreg']
     password = request.form['passwordreg']
     passwordconf = request.form['passwordconfreg']
-    con = sql.connect("DM.db", timeout=10)
-    con.row_factory = dict_factory
-    cur = con.cursor()
-    cur.execute(schema.create_user)
     if password == passwordconf:
-        cur.execute(schema.register_user, (first, last, role, user, password))
+	    con = sql.connect("DM.db", timeout=10)
+	    con.row_factory = dict_factory
+	    cur = con.cursor()
+	    cur.execute(schema.create_users_table)
+	    cur.execute(schema.create_creds_table)
+        cur.execute(schema.register_user, (first, last, user))
+        cur.execute(schema.add_cred, (user, password))
         con.commit()
         cur.close()
         con.close()
@@ -85,125 +84,79 @@ def register():
         })
 
 #################################################################################
-# Tickets/assigned
+# campaigns
 #################################################################################
 
 
-@app.route('/getTickets', methods=['POST'])
-# used for IT to get all open tickets, use /getAssigned to return your tickets
-def get_open_tickets():
+# gets all campaigns for a user
+@app.route('/campaigns', methods=['GET'])
+def get_campaigns():
+	uid = session['uid']
     con = sql.connect("DM.db", timeout=10)
     con.row_factory = dict_factory
     cur = con.cursor()
-    cur.execute(schema.create_ticket)
-    cur.execute(schema.open_ticket)
-    open_data = cur.fetchall()
+    cur.execute(schema.create_campaigns_table)
+    cur.execute(schema.get_campaigns, (uid))
+    campaign_data = cur.fetchall()
     con.commit()
     cur.close()
     con.close()
     return jsonify({
-        'opentickets': open_data
+        'campaigns': campaign_data
     })
 
-
-@app.route('/getAssigned', methods=['POST'])
-def get_assigned_tickets():
-    user = session['username']
+# creates a new campaign for a user
+@app.route('/newCampaign', methods=['POST'])
+def new_campaign():
+    uid = session['uid']
+    name = request.form['newcampname']
     con = sql.connect("DM.db", timeout=10)
     con.row_factory = dict_factory
     cur = con.cursor()
-    cur.execute(schema.create_ticket)
-    cur.execute(schema.create_assigned)
-    cur.execute(schema.assigned_ticket, (user, user))
+    cur.execute(schema.create_users_table)
+    cur.execute(schema.create_campaigns_table)
+    cur.execute(schema.new_campaign, (uid, name))
     assigned_data = cur.fetchall()
     con.commit()
     cur.close()
     con.close()
     return jsonify({
-        'assignedtickets': assigned_data
+        'created': True
     })
 
-@app.route('/getUnassigned', methods=['POST'])
-def get_unassigned_tickets():
-    user = session['username']
+# deletes a campaign given the campaign ID
+@app.route('/campaigns', methods=['DELETE'])
+def delete_campaign():
+    id = request.form['cid']
     con = sql.connect("DM.db", timeout=10)
     con.row_factory = dict_factory
     cur = con.cursor()
-    cur.execute(schema.create_ticket)
-    cur.execute(schema.create_assigned)
-    cur.execute(schema.unassigned_ticket)
-    unassigned_data = cur.fetchall()
+    cur.execute(schema.create_campaigns_table)
+    cur.execute(schema.delete_campaign, (id))
     con.commit()
     cur.close()
     con.close()
     return jsonify({
-        'unassignedtickets': unassigned_data
+        'deleted': True
     })
 
-@app.route('/newTicket', methods=['POST'])
-def new_ticket():
-    user = session['username']
-    issue = request.form['ticketType']
-    comment = request.form['commenttix']
+# updates a campaign status
+@app.route('/setCampaignStatus', methods=['PUT'])
+def set_campaign_status():
+	id = request.form['cid']
+	status = request.form['request']
     con = sql.connect("DM.db", timeout=10)
     con.row_factory = dict_factory
     cur = con.cursor()
-    cur.execute(schema.create_ticket)
-    cur.execute(schema.create_assigned)
-    cur.execute(schema.new_ticket, (issue, comment, strftime("%Y-%m-%d", gmtime()), user))
-    ticket_id = cur.lastrowid
-    con.commit()
-    cur.execute(schema.assign_report, (user, ticket_id))
+    cur.execute(schema.create_campaigns_table)
+    cur.execute(schema.set_campaign_status, (status, id))
     con.commit()
     cur.close()
     con.close()
     return jsonify({
-       'newticket': True
-    })
-    
-
-
-@app.route('/assignTicket', methods=['POST'])
-def assign_ticket():
-    user = session['username']
-    # IT inputs ticket id to assign them to it
-    ticket_id = request.form['assigntix']
-    con = sql.connect("DM.db", timeout=10)
-    con.row_factory = dict_factory
-    cur = con.cursor()
-    cur.execute(schema.ticket_status, ("in progress", ticket_id))
-    con.commit()
-    cur.execute(schema.assign_it, (user, ticket_id))
-    con.commit()
-    cur.close()
-    con.close()
-    return jsonify({
-       'assign_it': True
+       'updated': True
     })
 
 
-@app.route('/closeTicket', methods=['POST'])
-def close_ticket():
-    ticket_id = request.form['closetix']
-    ticket_conf = request.form['closetixconf']
-    comment = request.form['closecomment']
 
-    con = sql.connect("DM.db", timeout=10)
-    con.row_factory = dict_factory
-    cur = con.cursor()
-    if ticket_id == ticket_conf:
-        cur.execute(schema.close_ticket, ("closed", comment, strftime("%Y-%m-%d", gmtime()), ticket_id))
-        con.commit()
-        cur.close()
-        con.close()
-        return jsonify({
-            'closed': True
-        })
-    else:
-        cur.close()
-        con.close()
-        return jsonify({
-            'close': False
-        })
-
-app.secret_key = 'A0Zr98j/3yX R~X0H!jmN]LWX/,?RT'
+app.secret_key = 'A0Zr76j/3yX R~X0H!jmN]LWX/,?RT'
