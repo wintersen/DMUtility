@@ -18,6 +18,8 @@ create_creds_table = "CREATE TABLE IF NOT EXISTS creds(" \
                   "CONSTRAINT fk_creds FOREIGN KEY (user) " \
                   "REFERENCES users(username) ON DELETE CASCADE)"
 
+add_cred = "INSERT INTO creds(user, pass) VALUES (?, ?);"
+
 login_user = "SELECT users.* FROM users, creds WHERE username=user AND username=? AND pass=?"
 
 #################################################################################
