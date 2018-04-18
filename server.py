@@ -186,7 +186,7 @@ def set_campaign_status():
 # gets all notes for a campaign
 @app.route('/notes', methods=['POST'])
 def get_notes():
-    cid = str(request.form['cid'])
+    cid = str(session['cid'])
     con = sql.connect("DM.db", timeout=10)
     con.row_factory = dict_factory
     cur = con.cursor()

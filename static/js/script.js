@@ -122,7 +122,7 @@ $(document).ready(function(){
                     $('#campaignselect').hide();
                     $('#home').show();
                     console.log("CID: " + cid);
-                    // getNotesTable();
+                    getNotesTable();
                     // getNPCTable();
                     // getMonsterTable();
                 }
@@ -139,11 +139,11 @@ $(document).ready(function(){
         $.ajax({
             url: '/notes',
             data: {
-                cid: cid
+                cid: JSON.stringify(cid)
             },
             contentType: "application/json",
             dataType: "json",
-            type: 'GET',
+            type: 'POST',
             success: function(response) {
                 $('#notes-table').empty();
                 response.notes.forEach(function(val){
