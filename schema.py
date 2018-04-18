@@ -30,10 +30,12 @@ create_campaigns_table = "CREATE TABLE IF NOT EXISTS campaigns(" \
                 "owner        INTEGER," \
                 "name         TEXT    NOT NULL," \
                 "status       TEXT    NOT NULL," \
+                "length_x     INTEGER,"\
+                "length_y     INTEGER,"\
                 "CONSTRAINT fk_campaigns FOREIGN KEY (owner) " \
                 "REFERENCES users(id) ON DELETE CASCADE)"
 
-new_campaign = "INSERT INTO campaigns(owner, name, status) VALUES (?,?,'not started');"
+new_campaign = "INSERT INTO campaigns(owner, name, status, length_x, length_y) VALUES (?,?,'not started',?,?);"
 
 get_campaigns = "SELECT * FROM campaigns WHERE owner=?"
 
