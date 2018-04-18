@@ -11,8 +11,7 @@ $(document).ready(function(){
                 console.log(response);
                 if(response.auth === true){
                     localStorage.setItem('userdata', JSON.stringify(response.user));
-                    $('#loginModal').hide();
-                    $('.modal-backdrop').hide();
+                    $('#close-login').click();
                     let user = JSON.parse(localStorage.getItem('userdata'));
                     console.log(user);
                     $('#login').hide();
@@ -70,7 +69,7 @@ $(document).ready(function(){
                 $('#CampaignTableBody').empty();
                 response.campaigns.forEach(function(val){
                     // $('#CampaignTableBody').append("<tr><td>" + val.id + "</td><td>" + val.name + "</td><td>" + val.status + "</td></tr>");
-                    $('#CampaignTableBody').append("<button type='button' class='btn btn-secondary brn-lg brn-block'><div class='row text-center'><div class='col-sm-4'>" + val.name + "</div><div class='col-sm-4'>" + val.status + "</div></div></button>");
+                    $('#CampaignTableBody').append("<tr><td><button type='button' class='btn btn-secondary brn-lg brn-block'><div class='row text-center'><div class='col-sm-4'>" + val.name + "</div><div class='col-sm-4'>" + val.status + "</div></div></button></td></tr>");
                 });
             },
             error: function(error) {

@@ -42,7 +42,7 @@ DEVELOPED BY KHEPRICODE
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="loginModalLabel">ENTER LOGIN INFORMATION</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" id="close-login" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -89,7 +89,7 @@ DEVELOPED BY KHEPRICODE
 </div>
 
 <!-- CAMPAIGN SELECTION PAGE -->
-<div id = "campaignselect" style="display:">
+<div id = "campaignselect" style="display:none">
     <!-- TOP DESIGN -->
     <div style="min-height: vh"></div>
     <div class="jumbotron jumbotron-fluid text-center" style="background-color: beige; font-size: 35px; font-weight: 600">
@@ -107,12 +107,13 @@ DEVELOPED BY KHEPRICODE
         <div class="row">
             <h3>In-Progress Campaigns</h3>
         </div>
-        <button type="button" class="btn btn-primary btn-lg btn-block">
-            <div class="row text-center">
-                <div class="col-sm-4">Name</div>
-                <div class="col-sm-4">Status</div>
-            </div>
-        </button>
+        <table class="table" style="width: 80%">
+          <thead>
+            <th scope="col">Name</th>
+            <th scope="col">Status</th>
+          </thead>
+          <tbody id="CampaignTableBody"></tbody>
+        </table>
         <div class="container" id="CampaignTableBody"></div>
         <div class="row" style="margin-top:10vh; margin-bottom:10vh">
             <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#campaignModal">Create New Campaign</button>
@@ -148,7 +149,7 @@ DEVELOPED BY KHEPRICODE
 </div>
     
 <!-- CAMPAIGN HOME PAGE -->
-<div id = "home" style="display:">
+<div id = "home" style="display:none">
     <div class="container">
         <div class="row" style="margin-bottom: 2vh">
             <div class="col-sm-7" id="map">
