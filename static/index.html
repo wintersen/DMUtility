@@ -346,13 +346,14 @@ DEVELOPED BY KHEPRICODE
           </div>
           <div class="modal-body">
             <form class="form-note" id='note-form' role="form">
-                <textarea name="notebody" class="form-control" placeholder="Enter note here." required autofocus value=""></textarea>
+              <input type="text" name="name" class="form-control" placeholder="Name of note" required autofocus value="">
+              <textarea name="content" class="form-control" placeholder="Enter note here." required autofocus value=""></textarea>
               <font color="FF0000"><span id='errorMessageNote'></span></font>
             </form>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick='$("#form-note")[0].reset(); $("#errorMessageNote").empty()'>Close</button>
-            <button type="button" class="btn btn-primary">Create</button>
+            <button type="button" id="create-note" class="btn btn-primary">Create</button>
           </div>
         </div>
       </div>
@@ -370,18 +371,21 @@ DEVELOPED BY KHEPRICODE
           <div class="modal-body">
             <form class="form-npc" id='npc-form' role="form">
                 <div class="form-group">
-                    <input type="text" name="npcname" class="form-control" placeholder="First Last" required autofocus value="">
-                    <input type="text" name="npchome" class="form-control" placeholder="Hometown" required autofocus value="">
+                    <input type="text" name="name" class="form-control" placeholder="First Last" required autofocus value="">
+                    <input type="text" name="lid" class="form-control" placeholder="Hometown" required autofocus value="">
                 </div>
                 <div class="form-group">
-                    <textarea name="npcdesc" class="form-control" placeholder="Enter description here." required autofocus value=""></textarea>
+                    <input type="text" name="occupation" class="form-control" placeholder="Occupation" required autofocus value=""></textarea>
                 </div>
                 <div class="form-group">
-                    <textarea name="npctraits" class="form-control" placeholder="Enter traits here." required autofocus value=""></textarea>
+                    <textarea name="desc" class="form-control" placeholder="Enter description here." required autofocus value=""></textarea>
                 </div>
                 <div class="form-group">
-                    <input type="text" name="npcrace" class="form-control" placeholder="Race" required autofocus value="">
-                    <input type="text" name="npcalign" class="form-control" placeholder="Alignment" required autofocus value="">
+                    <textarea name="traits" class="form-control" placeholder="Enter traits here." required autofocus value=""></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="race" class="form-control" placeholder="Race" required autofocus value="">
+                    <input type="text" name="align" class="form-control" placeholder="Alignment" required autofocus value="">
                 </div>
                 <div class="form-group">
                     <table id="npcstats" name="npcstats" class="text-center">
@@ -396,14 +400,14 @@ DEVELOPED BY KHEPRICODE
                         <th>CHR</th>
                     </thead>
                     <tr>
-                        <td><input type="text" name="npchp" class="form-control" placeholder="0" required autofocus value=""></td>
-                        <td><input type="text" name="npcac" class="form-control" placeholder="0" required autofocus value=""></td>
-                        <td><input type="text" name="npcstr" class="form-control" placeholder="0" required autofocus value=""></td>
-                        <td><input type="text" name="npcdex" class="form-control" placeholder="0" required autofocus value=""></td>
-                        <td><input type="text" name="npccon" class="form-control" placeholder="0" required autofocus value=""></td>
-                        <td><input type="text" name="npcint" class="form-control" placeholder="0" required autofocus value=""></td>
-                        <td><input type="text" name="npcwis" class="form-control" placeholder="0" required autofocus value=""></td>
-                        <td><input type="text" name="npcchr" class="form-control" placeholder="0" required autofocus value=""></td>
+                        <td><input type="text" name="hp" class="form-control" placeholder="0" required autofocus value=""></td>
+                        <td><input type="text" name="ac" class="form-control" placeholder="0" required autofocus value=""></td>
+                        <td><input type="text" name="str" class="form-control" placeholder="0" required autofocus value=""></td>
+                        <td><input type="text" name="dex" class="form-control" placeholder="0" required autofocus value=""></td>
+                        <td><input type="text" name="con" class="form-control" placeholder="0" required autofocus value=""></td>
+                        <td><input type="text" name="int" class="form-control" placeholder="0" required autofocus value=""></td>
+                        <td><input type="text" name="wis" class="form-control" placeholder="0" required autofocus value=""></td>
+                        <td><input type="text" name="chr" class="form-control" placeholder="0" required autofocus value=""></td>
                     </tr>
                 </table>
                 </div>             
@@ -412,7 +416,7 @@ DEVELOPED BY KHEPRICODE
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick='$("#form-npc")[0].reset(); $("#errorMessageNPC").empty()'>Close</button>
-            <button type="button" class="btn btn-primary">Create</button>
+            <button type="button" id="create-npc" class="btn btn-primary">Create</button>
           </div>
         </div>
       </div>

@@ -203,7 +203,7 @@ def get_notes():
 # creates a note for a campaign
 @app.route('/newNote', methods=['POST'])
 def new_note():
-    cid = str(request.form['cid'])
+    cid = str(session['cid'])
     name = request.form['name']
     content = request.form['content']
     con = sql.connect("DM.db", timeout=10)
@@ -274,15 +274,15 @@ def get_npcs():
 # new npc
 @app.route('/newNpc', methods=['POST'])
 def new_npc():
-    cid = str(request.form['cid'])
-    lid = str(request.form['lid'])
+    cid = str(session['cid'])
+    lid = str(0)
     name = request.form['name']
     occ = request.form['occupation']
     desc = request.form['desc']
     traits = request.form['traits']
     race = request.form['race']
     align = request.form['align']
-    note = request.form['note']
+    note = ""#request.form['note']
     strength = str(request.form['str'])
     dex = str(request.form['dex'])
     scon = str(request.form['con'])
