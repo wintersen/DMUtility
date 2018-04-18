@@ -149,7 +149,7 @@ DEVELOPED BY KHEPRICODE
 </div>
     
 <!-- CAMPAIGN HOME PAGE -->
-<div id = "home" style="display:none">
+<div id = "home" style="display:">
     <div class="container">
         <!-- MAP AND NOTES -->
         <div class="row" style="margin-bottom: 2vh">
@@ -347,11 +347,11 @@ DEVELOPED BY KHEPRICODE
           <div class="modal-body">
             <form class="form-note" id='note-form' role="form">
                 <textarea name="notebody" class="form-control" placeholder="Enter note here." required autofocus value=""></textarea>
-              <font color="FF0000"><span id='errorMessageReg'></span></font>
+              <font color="FF0000"><span id='errorMessageNote'></span></font>
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick='$("#note-form")[0].reset(); $("#errorMessageReg").empty()'>Close</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick='$("#form-note")[0].reset(); $("#errorMessageNote").empty()'>Close</button>
             <button type="button" class="btn btn-primary">Create</button>
           </div>
         </div>
@@ -407,11 +407,11 @@ DEVELOPED BY KHEPRICODE
                     </tr>
                 </table>
                 </div>             
-              <font color="FF0000"><span id='errorMessageReg'></span></font>
+              <font color="FF0000"><span id='errorMessageNPC'></span></font>
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick='$("#note-form")[0].reset(); $("#errorMessageReg").empty()'>Close</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick='$("#form-npc")[0].reset(); $("#errorMessageNPC").empty()'>Close</button>
             <button type="button" class="btn btn-primary">Create</button>
           </div>
         </div>
@@ -428,7 +428,7 @@ DEVELOPED BY KHEPRICODE
             </button>
           </div>
           <div class="modal-body">
-            <form class="form-npc" id='npc-form' role="form">
+            <form class="form-npc" id='monster-form' role="form">
                 <div class="form-group">
                     <input type="text" name="monstername" class="form-control" placeholder="Monster's Name" required autofocus value="">
                 </div>
@@ -466,7 +466,7 @@ DEVELOPED BY KHEPRICODE
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick='$("#note-form")[0].reset(); $("#errorMessageReg").empty()'>Close</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick='$("#form-monster")[0].reset(); $("#errorMessageMon").empty()'>Close</button>
             <button type="button" class="btn btn-primary">Create</button>
           </div>
         </div>
