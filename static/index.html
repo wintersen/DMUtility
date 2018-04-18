@@ -151,6 +151,7 @@ DEVELOPED BY KHEPRICODE
 <!-- CAMPAIGN HOME PAGE -->
 <div id = "home" style="display:none">
     <div class="container">
+        <!-- MAP AND NOTES -->
         <div class="row" style="margin-bottom: 2vh">
             <div class="col-sm-7" id="map">
                 <div class="card"><div class="card-body">
@@ -161,56 +162,315 @@ DEVELOPED BY KHEPRICODE
                 <div class="card">
                     <div class="card-header">NOTES</div>
                     <div class="card-body">
+                    <!-- BEGIN INDIVIDUAL NOTE -->
                     <div id="accordion">
                       <div class="card">
                         <div class="card-header" id="headingOne">
                           <h5 class="mb-0">
                             <button class="btn btn-link" data-toggle="collapse" data-target="#noteCollapse" aria-expanded="false" aria-controls="noteCollapse">
-                              NOTE 1
+                              NOTE TITLE
                             </button>
                           </h5>
                         </div>
-                        <div id="noteCollapse" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div id="noteCollapse" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                           <div class="card-body">
-                            note body
+                            <p>NOTE TEXT BODY</p>
+                            <button type="button" class="btn btn-primary btn-sm">BANISH NOTE</button>
                           </div>
                         </div>
                       </div>
                     </div>
+                    <!-- END INDIVIDUAL NOTE -->
                     </div>
+                    <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#noteModal">Create New Note</button>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-sm-6" id="npcs">
+        <!-- END MAP AND NOTES -->
+        <!-- NPC SECTION -->
+        <div class="row" style="margin-bottom: 2vh">
+            <div class="col-sm-12" id="npcs">
                 <div class="card">
                     <div class="card-header">NPCS</div>
                     <div class="card-body">
+                    <!-- BEGIN NPC -->
                     <div id="accordion">
                       <div class="card">
                         <div class="card-header" id="heading2">
                           <h5 class="mb-0">
-                            <button class="btn btn-link" data-toggle="collapse" data-target="#npc1" aria-expanded="false" aria-controls="npc1">
-                              NPC 1
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#npc1" aria-expanded="false" aria-controls="npc1" id="NPC_name">
+                              NPC NAME GOES HERE
                             </button>
                           </h5>
                         </div>
-                        <div id="npc1" class="collapse show" aria-labelledby="heading2" data-parent="#accordion">
+                        <div id="npc1" class="collapse" aria-labelledby="heading2" data-parent="#accordion">
                           <div class="card-body">
-                            note body
+                            <table class="table text-center">
+                              <thead>
+                                <tr>
+                                    <th scope="col">JOB</th>
+                                    <th scope="col">HOMETOWN</th>
+                                    <th scope="col">DESCRIPTION</th>
+                                    <th scope="col">TRAITS</th>
+                                    <th scope="col">RACE</th>
+                                    <th scope="col">ALIGNMENT</th>
+                                    <th scope="col">STATS</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <td id="job_td">jorb</td>
+                                  <td id="home_td">townland</td>
+                                  <td id="desc_td">shitty guy</td>
+                                    <td id="traits_td">shitty</td>
+                                    <td id="race_td">elf</td>
+                                    <td id="align_td">neutral</td>
+                                    <td id="stats_td">
+                                        <table>
+                                            <thead>
+                                                <th>HP</th>
+                                                <th>AC</th>
+                                                <th>STR</th>
+                                                <th>DEX</th>
+                                                <th>CON</th>
+                                                <th>INT</th>
+                                                <th>WIS</th>
+                                                <th>CHR</th>
+                                            </thead>
+                                            <tr>
+                                                <td id="HP_td">1</td>
+                                                <td id="AC_td">2</td>
+                                                <td id="STR_td">3</td>
+                                                <td id="DEX_td">4</td>
+                                                <td id="CON_td">5</td>
+                                                <td id="INT_td">6</td>
+                                                <td id="WIS_td">7</td>
+                                                <td id="CHR_td">8</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          <button type="button" class="btn btn-primary btn-sm">BANISH NPC</button>
                           </div>
                         </div>
                       </div>
                     </div>
+                    <!-- END NPC -->
                     </div>
+                    <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#npcModal">Create New NPC</button>
                 </div>
             </div>
-            <div class="col-sm-6" id="monsters">
-                <div class="card"><div class="card-body">
-                    monsters
-                </div></div>
+        </div>
+        <!-- END NPC SECTION -->
+        <!-- BEGIN MONSTER SECTION -->
+        <div class="row">
+            <div class="col-sm-12" id="monsters">
+                 <div class="card">
+                    <div class="card-header">MONSTERS</div>
+                    <div class="card-body">
+                    <!-- BEGIN MONSTER -->
+                    <div id="accordion">
+                      <div class="card">
+                        <div class="card-header" id="heading3">
+                          <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#mon1" aria-expanded="false" aria-controls="mon1" id="mon_name">
+                              MONSTER NAME GOES HERE
+                            </button>
+                          </h5>
+                        </div>
+                        <div id="mon1" class="collapse" aria-labelledby="heading3" data-parent="#accordion">
+                          <div class="card-body">
+                            <table class="table text-center">
+                              <thead>
+                                <tr>
+                                    <th scope="col">EQUIPMENT</th>
+                                    <th scope="col">DESCRIPTION</th>
+                                    <th scope="col">STATS</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <td id="equip_td">jorb</td>
+                                  <td id="m_desc_td">townland</td>
+                                    <td id="m_stats_td">
+                                        <table style="margin: 0px auto">
+                                            <thead>
+                                                <th>HP</th>
+                                                <th>AC</th>
+                                                <th>STR</th>
+                                                <th>DEX</th>
+                                                <th>CON</th>
+                                                <th>INT</th>
+                                                <th>WIS</th>
+                                                <th>CHR</th>
+                                            </thead>
+                                            <tr>
+                                                <td id="mHP_td">1</td>
+                                                <td id="mAC_td">2</td>
+                                                <td id="mSTR_td">3</td>
+                                                <td id="mDEX_td">4</td>
+                                                <td id="mCON_td">5</td>
+                                                <td id="mINT_td">6</td>
+                                                <td id="mWIS_td">7</td>
+                                                <td id="mCHR_td">8</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          <button type="button" class="btn btn-primary btn-sm">BANISH MONSTER</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- END MONSTER -->
+                    </div>
+                     <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#monsterModal">Create New Monster</button>
+                </div>
             </div>
         </div>
+        <!-- END MONSTER SECTION -->
+    </div>
+    <!-- NEW NOTE MODAL -->
+    <div class="modal fade" id="noteModal" tabindex="-1" role="dialog" aria-labelledby="noteModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="noteModalLabel">PEN A NEW NOTE</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form class="form-note" id='note-form' role="form">
+                <textarea name="notebody" class="form-control" placeholder="Enter note here." required autofocus value=""></textarea>
+              <font color="FF0000"><span id='errorMessageReg'></span></font>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick='$("#note-form")[0].reset(); $("#errorMessageReg").empty()'>Close</button>
+            <button type="button" class="btn btn-primary">Create</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- NEW NPC MODAL -->
+    <div class="modal fade" id="npcModal" tabindex="-1" role="dialog" aria-labelledby="npcModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="npcModalLabel">CREATE A NEW NPC</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form class="form-npc" id='npc-form' role="form">
+                <div class="form-group">
+                    <input type="text" name="npcname" class="form-control" placeholder="First Last" required autofocus value="">
+                    <input type="text" name="npchome" class="form-control" placeholder="Hometown" required autofocus value="">
+                </div>
+                <div class="form-group">
+                    <textarea name="npcdesc" class="form-control" placeholder="Enter description here." required autofocus value=""></textarea>
+                </div>
+                <div class="form-group">
+                    <textarea name="npctraits" class="form-control" placeholder="Enter traits here." required autofocus value=""></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="npcrace" class="form-control" placeholder="Race" required autofocus value="">
+                    <input type="text" name="npcalign" class="form-control" placeholder="Alignment" required autofocus value="">
+                </div>
+                <div class="form-group">
+                    <table id="npcstats" name="npcstats" class="text-center">
+                    <thead>
+                        <th>HP</th>
+                        <th>AC</th>
+                        <th>STR</th>
+                        <th>DEX</th>
+                        <th>CON</th>
+                        <th>INT</th>
+                        <th>WIS</th>
+                        <th>CHR</th>
+                    </thead>
+                    <tr>
+                        <td><input type="text" name="npchp" class="form-control" placeholder="0" required autofocus value=""></td>
+                        <td><input type="text" name="npcac" class="form-control" placeholder="0" required autofocus value=""></td>
+                        <td><input type="text" name="npcstr" class="form-control" placeholder="0" required autofocus value=""></td>
+                        <td><input type="text" name="npcdex" class="form-control" placeholder="0" required autofocus value=""></td>
+                        <td><input type="text" name="npccon" class="form-control" placeholder="0" required autofocus value=""></td>
+                        <td><input type="text" name="npcint" class="form-control" placeholder="0" required autofocus value=""></td>
+                        <td><input type="text" name="npcwis" class="form-control" placeholder="0" required autofocus value=""></td>
+                        <td><input type="text" name="npcchr" class="form-control" placeholder="0" required autofocus value=""></td>
+                    </tr>
+                </table>
+                </div>             
+              <font color="FF0000"><span id='errorMessageReg'></span></font>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick='$("#note-form")[0].reset(); $("#errorMessageReg").empty()'>Close</button>
+            <button type="button" class="btn btn-primary">Create</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- NEW MONSTER MODAL -->
+    <div class="modal fade" id="monsterModal" tabindex="-1" role="dialog" aria-labelledby="monsterModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="monsterModalLabel">CREATE A NEW MONSTER</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form class="form-npc" id='npc-form' role="form">
+                <div class="form-group">
+                    <input type="text" name="monstername" class="form-control" placeholder="Monster's Name" required autofocus value="">
+                </div>
+                <div class="form-group">
+                    <textarea name="monequip" class="form-control" placeholder="Enter monster's equipment here." required autofocus value=""></textarea>
+                </div>
+                <div class="form-group">
+                    <textarea name="mondesc" class="form-control" placeholder="Enter monster's description here." required autofocus value=""></textarea>
+                </div>
+                <div class="form-group">
+                    <table id="monstats" name="monstats" class="text-center">
+                    <thead>
+                        <th>HP</th>
+                        <th>AC</th>
+                        <th>STR</th>
+                        <th>DEX</th>
+                        <th>CON</th>
+                        <th>INT</th>
+                        <th>WIS</th>
+                        <th>CHR</th>
+                    </thead>
+                    <tr>
+                        <td><input type="text" name="monhp" class="form-control" placeholder="0" required autofocus value=""></td>
+                        <td><input type="text" name="monac" class="form-control" placeholder="0" required autofocus value=""></td>
+                        <td><input type="text" name="monstr" class="form-control" placeholder="0" required autofocus value=""></td>
+                        <td><input type="text" name="mondex" class="form-control" placeholder="0" required autofocus value=""></td>
+                        <td><input type="text" name="moncon" class="form-control" placeholder="0" required autofocus value=""></td>
+                        <td><input type="text" name="monint" class="form-control" placeholder="0" required autofocus value=""></td>
+                        <td><input type="text" name="monwis" class="form-control" placeholder="0" required autofocus value=""></td>
+                        <td><input type="text" name="monchr" class="form-control" placeholder="0" required autofocus value=""></td>
+                    </tr>
+                </table>
+                </div>             
+              <font color="FF0000"><span id='errorMessageReg'></span></font>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick='$("#note-form")[0].reset(); $("#errorMessageReg").empty()'>Close</button>
+            <button type="button" class="btn btn-primary">Create</button>
+          </div>
+        </div>
+      </div>
     </div>
 </div>
 
