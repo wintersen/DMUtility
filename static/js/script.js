@@ -106,8 +106,28 @@ $(document).ready(function(){
                 console.log(error);
             }
         });
+    });
 
-    })
+    // create monster
+    $('#create-monster').on('click', function(){
+        $.ajax({
+            url: '/newMonster',
+            data: $('#monster-form').serialize(),
+            type: 'POST',
+            success: function(response) {
+                if(response.created === true) {
+                    $('#monster-form').trigger("reset");
+                    $('#errorMessageMonster').text('Successfully created new monster.');
+                    // getMonsterTable();
+                }else{
+                    $('#errorMessageMonster').text('Creation failed. Try again.');
+                }
+            },
+            error: function(error){
+                console.log(error);
+            }
+        });
+    });
 
     $("#CampaignTableBody").on('click', function(e){
         console.log(e);

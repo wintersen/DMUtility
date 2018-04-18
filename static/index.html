@@ -434,13 +434,13 @@ DEVELOPED BY KHEPRICODE
           <div class="modal-body">
             <form class="form-npc" id='monster-form' role="form">
                 <div class="form-group">
-                    <input type="text" name="monstername" class="form-control" placeholder="Monster's Name" required autofocus value="">
+                    <input type="text" name="name" class="form-control" placeholder="Monster's Name" required autofocus value="">
                 </div>
                 <div class="form-group">
-                    <textarea name="monequip" class="form-control" placeholder="Enter monster's equipment here." required autofocus value=""></textarea>
+                    <textarea name="equip" class="form-control" placeholder="Enter monster's equipment here." required autofocus value=""></textarea>
                 </div>
                 <div class="form-group">
-                    <textarea name="mondesc" class="form-control" placeholder="Enter monster's description here." required autofocus value=""></textarea>
+                    <textarea name="desc" class="form-control" placeholder="Enter monster's description here." required autofocus value=""></textarea>
                 </div>
                 <div class="form-group">
                     <table id="monstats" name="monstats" class="text-center">
@@ -455,23 +455,23 @@ DEVELOPED BY KHEPRICODE
                         <th>CHR</th>
                     </thead>
                     <tr>
-                        <td><input type="text" name="monhp" class="form-control" placeholder="0" required autofocus value=""></td>
-                        <td><input type="text" name="monac" class="form-control" placeholder="0" required autofocus value=""></td>
-                        <td><input type="text" name="monstr" class="form-control" placeholder="0" required autofocus value=""></td>
-                        <td><input type="text" name="mondex" class="form-control" placeholder="0" required autofocus value=""></td>
-                        <td><input type="text" name="moncon" class="form-control" placeholder="0" required autofocus value=""></td>
-                        <td><input type="text" name="monint" class="form-control" placeholder="0" required autofocus value=""></td>
-                        <td><input type="text" name="monwis" class="form-control" placeholder="0" required autofocus value=""></td>
-                        <td><input type="text" name="monchr" class="form-control" placeholder="0" required autofocus value=""></td>
+                        <td><input type="text" name="hp" class="form-control" placeholder="0" required autofocus value=""></td>
+                        <td><input type="text" name="ac" class="form-control" placeholder="0" required autofocus value=""></td>
+                        <td><input type="text" name="str" class="form-control" placeholder="0" required autofocus value=""></td>
+                        <td><input type="text" name="dex" class="form-control" placeholder="0" required autofocus value=""></td>
+                        <td><input type="text" name="con" class="form-control" placeholder="0" required autofocus value=""></td>
+                        <td><input type="text" name="int" class="form-control" placeholder="0" required autofocus value=""></td>
+                        <td><input type="text" name="wis" class="form-control" placeholder="0" required autofocus value=""></td>
+                        <td><input type="text" name="chr" class="form-control" placeholder="0" required autofocus value=""></td>
                     </tr>
                 </table>
                 </div>             
-              <font color="FF0000"><span id='errorMessageReg'></span></font>
+              <font color="FF0000"><span id='errorMessageMonster'></span></font>
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick='$("#form-monster")[0].reset(); $("#errorMessageMon").empty()'>Close</button>
-            <button type="button" class="btn btn-primary">Create</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick='$("#form-monster")[0].reset(); $("#errorMessageMonster").empty()'>Close</button>
+            <button type="button" id="create-monster" class="btn btn-primary">Create</button>
           </div>
         </div>
       </div>

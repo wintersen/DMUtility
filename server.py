@@ -374,9 +374,9 @@ def get_monsters():
 # new monster
 @app.route('/newMonster', methods=['POST'])
 def new_monster():
-    cid = str(request.form['cid'])
+    cid = str(session['cid'])
     name = request.form['name']
-    note = request.form['note']
+    note = request.form['desc']
     equipment = request.form['equip']
     strength = str(request.form['str'])
     dex = str(request.form['dex'])
