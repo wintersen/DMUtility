@@ -187,7 +187,7 @@ $(document).ready(function(){
                     console.log("CID: " + cid);
                     getNotesTable();
                     // getNPCTable();
-                    // getMonsterTable();
+                    getMonsterTable();
                 }
             },
             error: function(error) {
@@ -202,9 +202,9 @@ $(document).ready(function(){
         
         $.ajax({
             url: '/notes',
-            data: {
+            /*data: {
                 cid: JSON.stringify(cid)
-            },
+            },*/
             contentType: "application/json",
             dataType: "json",
             type: 'POST',
@@ -233,7 +233,7 @@ $(document).ready(function(){
         $.ajax({
             url: '/npcs',
             data: {
-                cid: tempcid
+                cid: JSON.stringify(cid)
             },
             contentType: "application/json",
             dataType: "json",
@@ -255,18 +255,18 @@ $(document).ready(function(){
     }
 
     function getMonsterTable(){
-        tempcid = localStorage.getItem('cid');
+        cid = localStorage.getItem('cid');
         $.ajax({
             url: '/monsters',
-            data: {
-                cid: cid
-            },
+            /*data: {
+                cid: JSON.stringify(cid)
+            },*/
             contentType: "application/json",
             dataType: "json",
-            type: 'GET',
+            type: 'POST',
             success: function(response) {
                 $('#monster-table').empty();
-                response.npcs.forEach(function(val){
+                response.monsters.forEach(function(val){
                     $('#monster-table').append(
                         "<div id='monacc" + val.id + "'><div class='card'><div class='card-header' id='monhead" + val.id + "'><h5 class='mb-0'><button class='btn btn-link' data-toggle='collapse' data-target='#mon" + val.id + "' aria-expanded='false' aria-controls='mon" + val.id + "' id='mon_name'>" + val.name + "</button></h5></div><div id='mon" + val.id + "' class='collapse' aria-labelledby='monhead" + val.id + "' data-parent='#monacc" + val.id + "'><div class='card-body'><table class='table text-center'><thead><tr><th scope='col'>EQUIPMENT</th><th scope='col'>DESCRIPTION</th><th scope='col'>STATS</th></tr></thead><tbody><tr><td id='equip_td'>" + val.equipment + "</td><td id='m_desc_td'>" + val.description + "</td><td id='m_stats_td'><table style='margin: 0px auto'><thead><th>HP</th><th>AC</th><th>STR</th><th>DEX</th><th>CON</th><th>INT</th><th>WIS</th><th>CHR</th></thead><tr><td id='mHP_td'>" + val.hp + "</td><td id='mAC_td'>" + val.ac +"</td><td id='mSTR_td'>" + val.str +"</td><td id='mDEX_td'>" + val.dex +"</td><td id='mCON_td'>" + val.con +"</td><td id='mINT_td'>" + val.int +"</td><td id='mWIS_td'>" + val.wis +"</td><td id='mCHR_td'>" + val.chr +"</td></tr></table></td></tr></tbody></table><button type='button' class='btn btn-primary btn-sm'>BANISH MONSTER</button></div></div></div></div>"                 
                     );

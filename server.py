@@ -357,7 +357,7 @@ def edit_npc():
 # get monsters for a given campaign
 @app.route('/monsters', methods=['POST'])
 def get_monsters():
-    cid = str(request.form['cid'])
+    cid = str(session['cid'])
     con = sql.connect("DM.db", timeout=10)
     con.row_factory = dict_factory
     cur = con.cursor()
