@@ -44,37 +44,79 @@ $(document).ready(function(){
         });
     });
 
-    // make enter submit form
-    $('#login-form input').keydown(function(e) {
-        if (e.keyCode == 13) {
-            $('#login-button').click();
+    // Submit new campaign
+    $('#create-campaign').on('click', function(){
+        $.ajax({
+            url: '/newCampaign',
+            data: $('#campaign-form').serialize(),
+            type: 'POST',
+            success: function(response) {
+                if(response.created === true){
+                    $('#campaign-form').trigger("reset");
+                    $('#errorMessageCampaign').text('Successfully created new campaign.');
+                    getCampaignTable();
+                    // $('#close-create-campaign').click();
+                }else{
+                    $('#errorMessageCampaign').text('Creation failed. Try again.');
+                }
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    });
+
+    $("#CampaignTableBody").on('click', function(e){
+        console.log(e);
+        if (e.target.id.includes('campaign-selection-button')) {
+            cid = e.target.id.split("-")[3];
+            openCampaign(cid);
+            return;
         }
+        temp = e.target.parentNode;
+        for(i = 1;!temp.id.includes('campaign-selection-button'); i++){
+            if (temp.parentNode.id === 'CampaignTableBody') {
+                return;
+            }
+            temp = temp.parentNode;
+        }
+        cid = temp.id.split("-")[3];
+        openCampaign(cid);
     });
     
     // get campaign list
     function getCampaignTable(){
-        // tempuser = localStorage.getItem('userdata');
-        // let parseduser;
-        // if (tempuser) {
-        //     parseduser = JSON.parse(tempuser);
-        //     let uid
-        // }
+        tempuser = localStorage.getItem('userdata');
+        let parseduser;
+        if (tempuser) {
+            parseduser = JSON.parse(tempuser);
+        }
+        var uid = JSON.stringify(parseduser.id);
         $.ajax({
             url: '/campaigns',
             type: 'GET',
             success: function(response) {
                 $('#CampaignTableBody').empty();
                 response.campaigns.forEach(function(val){
-                    // $('#CampaignTableBody').append("<tr><td>" + val.id + "</td><td>" + val.name + "</td><td>" + val.status + "</td></tr>");
-                    $('#CampaignTableBody').append("<tr><td><button type='button' class='btn btn-secondary brn-lg brn-block'>" + 
-                        "<div class='row text-center'><div class='col-sm-4'>" + 
-                        val.name + "</div><div class='col-sm-4'>" + val.status + "</div></div></button></td></tr>");
+                    $('#CampaignTableBody').append("<tr><td><button type='button' id='campaign-selection-button-" + val.id + 
+                        "' class='btn btn-secondary brn-lg brn-block'><div class='row text-center'><div class='col-sm-4'>" + val.name + 
+                        "</div><div class='col-sm-4'>" + val.status + "</div></div></button></td></tr>");
                 });
             },
             error: function(error) {
                 console.log(error);
             }
         });
+    }
+
+    function openCampaign(cid){
+        localStorage.setItem('cid', cid);
+        $('#campaignselect').hide();
+        $('#home').show();
+        console.log("CID: " + cid);
+        // getNotesTable();
+        // getNPCTable();
+        // getMonsterTable();
     }
 
     // get notes for campaign
