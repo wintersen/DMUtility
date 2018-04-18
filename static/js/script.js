@@ -66,6 +66,49 @@ $(document).ready(function(){
         });
     });
 
+    // submit new note
+    $('#create-note').on('click', function(){
+        $.ajax({
+            url: '/newNote',
+            data: $('#note-form').serialize(),
+            type: 'POST',
+            success: function(response) {
+                if(response.created === true) {
+                    $('#note-form').trigger("reset");
+                    $('#errorMessageNote').text('Successfully created new note.');
+                    getNotesTable();
+                }else{
+                    $('#errorMessageNote').text('Creation failed. Try again.');
+                }
+            },
+            error: function(error){
+                console.log(error);
+            }
+        });
+    });
+
+    // create npc
+    $('#create-npc').on('click', function(){
+        $.ajax({
+            url: '/newNpc',
+            data: $('#npc-form').serialize(),
+            type: 'POST',
+            success: function(response) {
+                if(response.created === true) {
+                    $('#npc-form').trigger("reset");
+                    $('#errorMessageNPC').text('Successfully created new NPC.');
+                    // getNPCTable();
+                }else{
+                    $('#errorMessageNPC').text('Creation failed. Try again.');
+                }
+            },
+            error: function(error){
+                console.log(error);
+            }
+        });
+
+    })
+
     $("#CampaignTableBody").on('click', function(e){
         console.log(e);
         if (e.target.id.includes('campaign-selection-button')) {
@@ -122,7 +165,7 @@ $(document).ready(function(){
                     $('#campaignselect').hide();
                     $('#home').show();
                     console.log("CID: " + cid);
-                    // getNotesTable();
+                    getNotesTable();
                     // getNPCTable();
                     // getMonsterTable();
                 }
@@ -142,11 +185,11 @@ $(document).ready(function(){
         $.ajax({
             url: '/notes',
             data: {
-                cid: cid
+                cid: JSON.stringify(cid)
             },
             contentType: "application/json",
             dataType: "json",
-            type: 'GET',
+            type: 'POST',
             success: function(response) {
                 $('#notes-table').empty();
                 response.notes.forEach(function(val){
