@@ -1,7 +1,4 @@
 $(document).ready(function(){
-    // $('#homeComponent').hide();
-    // $('#itHome').hide();
-    // $('#userHome').hide();
     $('#login-button').on('click', function() {
         $.ajax({
             url: '/login',
@@ -69,7 +66,9 @@ $(document).ready(function(){
                 $('#CampaignTableBody').empty();
                 response.campaigns.forEach(function(val){
                     // $('#CampaignTableBody').append("<tr><td>" + val.id + "</td><td>" + val.name + "</td><td>" + val.status + "</td></tr>");
-                    $('#CampaignTableBody').append("<tr><td><button type='button' class='btn btn-secondary brn-lg brn-block'><div class='row text-center'><div class='col-sm-4'>" + val.name + "</div><div class='col-sm-4'>" + val.status + "</div></div></button></td></tr>");
+                    $('#CampaignTableBody').append("<tr><td><button type='button' class='btn btn-secondary brn-lg brn-block'>" + 
+                        "<div class='row text-center'><div class='col-sm-4'>" + 
+                        val.name + "</div><div class='col-sm-4'>" + val.status + "</div></div></button></td></tr>");
                 });
             },
             error: function(error) {
@@ -111,11 +110,11 @@ $(document).ready(function(){
         let parsedcid;
         if (tempcid) {
             parsedcid = JSON.parse(tempcid);
-            let cid = parsedcid.cid;
+            let tempcid = parsedcid;
             $.ajax({
                 url: '/npcs',
                 data: {
-                    cid: cid
+                    cid: tempcid
                 },
                 contentType: "application/json",
                 dataType: "json",
@@ -123,7 +122,11 @@ $(document).ready(function(){
                 success: function(response) {
                     $('#NPCTableBody').empty();
                     response.npcs.forEach(function(val){
-                        $('#NPCTableBody').append("<tr><td>" + val.id + "</td><td>" + val.name + "</td><td>" + val.occupation + "</td><td>" + val.description + "</td><td>" + val.traits + "</td><td>" + val.race + "</td><td>" + val.alignment + "</td><td>" + val.note + "</td><td>" + val.str + "</td><td>" + val.dex + "</td><td>" + val.con + "</td><td>" + val.int + "</td><td>" + val.wis + "</td><td>" + val.chr + "</td><td>" + val.ac + "</td><td>" + val.hp + "</td></tr>");
+                        $('#NPCTableBody').append("<tr><td>" + val.id + "</td><td>" + val.name + "</td><td>" + 
+                            val.occupation + "</td><td>" + val.description + "</td><td>" + val.traits + "</td><td>" + 
+                            val.race + "</td><td>" + val.alignment + "</td><td>" + val.note + "</td><td>" + 
+                            val.str + "</td><td>" + val.dex + "</td><td>" + val.con + "</td><td>" + val.int + "</td><td>" + 
+                            val.wis + "</td><td>" + val.chr + "</td><td>" + val.ac + "</td><td>" + val.hp + "</td></tr>");
                     });
                 },
                 error: function(error) {
@@ -150,7 +153,10 @@ $(document).ready(function(){
                 success: function(response) {
                     $('#MonsterTableBody').empty();
                     response.npcs.forEach(function(val){
-                        $('#MonsterTableBody').append("<tr><td>" + val.id + "</td><td>" + val.name + "</td><td>" + val.equipment + "</td><td>" + val.note + "</td><td>" + val.str + "</td><td>" + val.dex + "</td><td>" + val.con + "</td><td>" + val.int + "</td><td>" + val.wis + "</td><td>" + val.chr + "</td><td>" + val.ac + "</td><td>" + val.hp + "</td></tr>");
+                        $('#MonsterTableBody').append("<tr><td>" + val.id + "</td><td>" + val.name + "</td><td>" + 
+                            val.equipment + "</td><td>" + val.note + "</td><td>" + val.str + "</td><td>" + 
+                            val.dex + "</td><td>" + val.con + "</td><td>" + val.int + "</td><td>" + val.wis + "</td><td>" + 
+                            val.chr + "</td><td>" + val.ac + "</td><td>" + val.hp + "</td></tr>");
                     });
                 },
                 error: function(error) {
@@ -177,7 +183,9 @@ $(document).ready(function(){
                 success: function(response) {
                     $('#LocationTableBody').empty();
                     response.npcs.forEach(function(val){
-                        $('#LocationTableBody').append("<tr><td>" + val.id + "</td><td>" + val.name + "</td><td>" + val.xcoord + "</td><td>" + val.ycoord + "</td><td>" + val.description + "</td><td>" + val.note + "</td><td>" + val.services + "</td></tr>");
+                        $('#LocationTableBody').append("<tr><td>" + val.id + "</td><td>" + val.name + "</td><td>" + 
+                            val.xcoord + "</td><td>" + val.ycoord + "</td><td>" + val.description + "</td><td>" + 
+                            val.note + "</td><td>" + val.services + "</td></tr>");
                     });
                 },
                 error: function(error) {
