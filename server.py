@@ -103,9 +103,9 @@ def register():
 #################################################################################
 
 # gets all campaigns for a user
-@app.route('/campaigns', methods=['POST'])
+@app.route('/campaigns', methods=['GET'])
 def get_campaigns():
-    uid = str(request.form['uid'])
+    uid = str(session['uid'])
     con = sql.connect("DM.db", timeout=10)
     con.row_factory = dict_factory
     cur = con.cursor()
@@ -122,7 +122,7 @@ def get_campaigns():
 # creates a new campaign for a user
 @app.route('/newCampaign', methods=['POST'])
 def new_campaign():
-    uid = str(request.form['uid'])
+    uid = str(session['uid'])
     name = request.form['newcampname']
     con = sql.connect("DM.db", timeout=10)
     con.row_factory = dict_factory
