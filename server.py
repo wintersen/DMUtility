@@ -103,9 +103,9 @@ def register():
 #################################################################################
 
 # gets all campaigns for a user
-@app.route('/campaigns', methods=['GET'])
+@app.route('/campaigns', methods=['POST'])
 def get_campaigns():
-    uid = session['uid']
+    uid = str(request.form['uid'])
     con = sql.connect("DM.db", timeout=10)
     con.row_factory = dict_factory
     cur = con.cursor()
@@ -122,7 +122,7 @@ def get_campaigns():
 # creates a new campaign for a user
 @app.route('/newCampaign', methods=['POST'])
 def new_campaign():
-    uid = session['uid']
+    uid = str(request.form['uid'])
     name = request.form['newcampname']
     con = sql.connect("DM.db", timeout=10)
     con.row_factory = dict_factory
@@ -140,7 +140,7 @@ def new_campaign():
 # deletes a campaign given the campaign ID
 @app.route('/campaigns', methods=['DELETE'])
 def delete_campaign():
-    cid = request.form['cid']
+    cid = str(request.form['cid'])
     con = sql.connect("DM.db", timeout=10)
     con.row_factory = dict_factory
     cur = con.cursor()
@@ -156,7 +156,7 @@ def delete_campaign():
 # updates a campaign status
 @app.route('/setCampaignStatus', methods=['PUT'])
 def set_campaign_status():
-    cid = request.form['cid']
+    cid = str(request.form['cid'])
     status = request.form['request']
     con = sql.connect("DM.db", timeout=10)
     con.row_factory = dict_factory
@@ -175,9 +175,9 @@ def set_campaign_status():
 #################################################################################
 
 # gets all notes for a campaign
-@app.route('/notes', methods=['GET'])
+@app.route('/notes', methods=['POST'])
 def get_notes():
-    cid = request.form['cid']
+    cid = str(request.form['cid'])
     con = sql.connect("DM.db", timeout=10)
     con.row_factory = dict_factory
     cur = con.cursor()
@@ -194,7 +194,7 @@ def get_notes():
 # creates a note for a campaign
 @app.route('/newNote', methods=['POST'])
 def new_note():
-    cid = request.form['cid']
+    cid = str(request.form['cid'])
     name = request.form['name']
     content = request.form['content']
     con = sql.connect("DM.db", timeout=10)
@@ -212,7 +212,7 @@ def new_note():
 # delete note
 @app.route('/notes', methods=['DELETE'])
 def delete_note():
-    nid = request.form['nid']
+    nid = str(request.form['nid'])
     con = sql.connect("DM.db", timeout=10)
     con.row_factory = dict_factory
     cur = con.cursor()
@@ -227,7 +227,7 @@ def delete_note():
 # edit note
 @app.route('/editNote', methods=['POST'])
 def edit_note():
-    nid = request.form['nid']
+    nid = str(request.form['nid'])
     name = request.form['name']
     content = request.form['content']
     con = sql.connect("DM.db", timeout=10)
@@ -246,9 +246,9 @@ def edit_note():
 #################################################################################
 
 # get npcs for a campaign
-@app.route('/npcs', methods=['GET'])
+@app.route('/npcs', methods=['POST'])
 def get_npcs():
-    cid = request.form['cid']
+    cid = str(request.form['cid'])
     con = sql.connect("DM.db", timeout=10)
     con.row_factory = dict_factory
     cur = con.cursor()
@@ -265,8 +265,8 @@ def get_npcs():
 # new npc
 @app.route('/newNpc', methods=['POST'])
 def new_npc():
-    cid = request.form['cid']
-    lid = request.form['lid']
+    cid = str(request.form['cid'])
+    lid = str(request.form['lid'])
     name = request.form['name']
     occ = request.form['occupation']
     desc = request.form['desc']
@@ -274,14 +274,14 @@ def new_npc():
     race = request.form['race']
     align = request.form['align']
     note = request.form['note']
-    strength = request.form['str']
-    dex = request.form['dex']
-    scon = request.form['con']
-    intel = request.form['int']
-    wis = request.form['wis']
-    char = request.form['chr']
-    ac = request.form['ac']
-    hp = request.form['hp']
+    strength = str(request.form['str'])
+    dex = str(request.form['dex'])
+    scon = str(request.form['con'])
+    intel = str(request.form['int'])
+    wis = str(request.form['wis'])
+    char = str(request.form['chr'])
+    ac = str(request.form['ac'])
+    hp = str(request.form['hp'])
     con = sql.connect("DM.db", timeout=10)
     con.row_factory = dict_factory
     cur = con.cursor()
@@ -297,7 +297,7 @@ def new_npc():
 # delete npc
 @app.route('/npcs', methods=['DELETE'])
 def delete_npc():
-    nid = request.form['nid']
+    nid = str(request.form['nid'])
     con = sql.connect("DM.db", timeout=10)
     con.row_factory = dict_factory
     cur.execute(schema.create_npcs_table)
@@ -312,8 +312,8 @@ def delete_npc():
 # edit npc
 @app.route('/editNpc', methods=['POST'])
 def edit_npc():
-    nid = request.form['nid']
-    lid = request.form['lid']
+    nid = str(request.form['nid'])
+    lid = str(request.form['lid'])
     name = request.form['name']
     occ = request.form['occupation']
     desc = request.form['desc']
@@ -321,14 +321,14 @@ def edit_npc():
     race = request.form['race']
     align = request.form['align']
     note = request.form['note']
-    strength = request.form['str']
-    dex = request.form['dex']
-    scon = request.form['con']
-    intel = request.form['int']
-    wis = request.form['wis']
-    char = request.form['chr']
-    ac = request.form['ac']
-    hp = request.form['hp']
+    strength = str(request.form['str'])
+    dex = str(request.form['dex'])
+    scon = str(request.form['con'])
+    intel = str(request.form['int'])
+    wis = str(request.form['wis'])
+    char = str(request.form['chr'])
+    ac = str(request.form['ac'])
+    hp = str(request.form['hp'])
     con = sql.connect("DM.db", timeout=10)
     con.row_factory = dict_factory
     cur = con.cursor()
@@ -346,9 +346,9 @@ def edit_npc():
 #################################################################################
 
 # get monsters for a given campaign
-@app.route('/monsters', methods=['GET'])
+@app.route('/monsters', methods=['POST'])
 def get_monsters():
-    cid = request.form['cid']
+    cid = str(request.form['cid'])
     con = sql.connect("DM.db", timeout=10)
     con.row_factory = dict_factory
     cur = con.cursor()
@@ -365,18 +365,18 @@ def get_monsters():
 # new monster
 @app.route('/newMonster', methods=['POST'])
 def new_monster():
-    cid = request.form['cid']
+    cid = str(request.form['cid'])
     name = request.form['name']
     note = request.form['note']
     equipment = request.form['equip']
-    strength = request.form['str']
-    dex = request.form['dex']
-    scon = request.form['con']
-    intel = request.form['int']
-    wis = request.form['wis']
-    char = request.form['chr']
-    ac = request.form['ac']
-    hp = request.form['hp']
+    strength = str(request.form['str'])
+    dex = str(request.form['dex'])
+    scon = str(request.form['con'])
+    intel = str(request.form['int'])
+    wis = str(request.form['wis'])
+    char = str(request.form['chr'])
+    ac = str(request.form['ac'])
+    hp = str(request.form['hp'])
     con = sql.connect("DM.db", timeout=10)
     con.row_factory = dict_factory
     cur = con.cursor()
@@ -392,7 +392,7 @@ def new_monster():
 # delete monster
 @app.route('/monsters', methods=['DELETE'])
 def delete_monster():
-    mid = request.form['mid']
+    mid = str(request.form['mid'])
     con = sql.connect("DM.db", timeout=10)
     con.row_factory = dict_factory
     cur = con.cursor()
@@ -408,18 +408,18 @@ def delete_monster():
 # edit monster
 @app.route('/editMonster', methods=['POST'])
 def edit_monster():
-    mid = request.form['mid']
+    mid = str(request.form['mid'])
     name = request.form['name']
     equipment = request.form['equip']
     note = request.form['note']
-    strength = request.form['str']
-    dex = request.form['dex']
-    scon = request.form['con']
-    intel = request.form['int']
-    wis = request.form['wis']
-    char = request.form['chr']
-    ac = request.form['ac']
-    hp = request.form['hp']
+    strength = str(request.form['str'])
+    dex = str(request.form['dex'])
+    scon = str(request.form['con'])
+    intel = str(request.form['int'])
+    wis = str(request.form['wis'])
+    char = str(request.form['chr'])
+    ac = str(request.form['ac'])
+    hp = str(request.form['hp'])
     con = sql.connect("DM.db", timeout=10)
     con.row_factory = dict_factory
     cur = con.cursor()
@@ -437,9 +437,9 @@ def edit_monster():
 #################################################################################
 
 # get locations by campaign
-@app.route('/locations', methods=['GET'])
+@app.route('/locations', methods=['POST'])
 def get_locations():
-    cid = request.form['cid']
+    cid = str(request.form['cid'])
     con = sql.connect("DM.db", timeout=10)
     con.row_factory = dict_factory
     cur = con.cursor()
@@ -456,10 +456,10 @@ def get_locations():
 # new location
 @app.route('/newLocation', methods=['POST'])
 def new_loc():
-    cid = request.form['cid']
+    cid = str(request.form['cid'])
     name = request.form['name']
-    x = request.form['xcoord']
-    y = request.form['ycoord']
+    x = str(request.form['xcoord'])
+    y = str(request.form['ycoord'])
     desc = request.form['desc']
     note = request.form['note']
     services = request.form['services']
@@ -478,7 +478,7 @@ def new_loc():
 # delete location
 @app.route('/locations', methods=['DELETE'])
 def delete_loc():
-    lid = request.form['lid']
+    lid = str(request.form['lid'])
     con = sql.connect("DM.db", timeout=10)
     con.row_factory = dict_factory
     cur = con.cursor()
@@ -494,10 +494,10 @@ def delete_loc():
 # edit location
 @app.route('/editLocation', methods=['POST'])
 def edit_loc():
-    lid = request.form['lid']
+    lid = str(request.form['lid'])
     name = request.form['name']
-    x = request.form['xcoord']
-    y = request.form['ycoord']
+    x = str(request.form['xcoord'])
+    y = str(request.form['ycoord'])
     desc = request.form['desc']
     note = request.form['note']
     services = request.form['services']
