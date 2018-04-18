@@ -89,7 +89,7 @@ DEVELOPED BY KHEPRICODE
 </div>
 
 <!-- CAMPAIGN SELECTION PAGE -->
-<div id = "campaignselect" style="display:none">
+<div id = "campaignselect" style="display:">
     <!-- TOP DESIGN -->
     <div style="min-height: vh"></div>
     <div class="jumbotron jumbotron-fluid text-center" style="background-color: beige; font-size: 35px; font-weight: 600">
@@ -149,7 +149,7 @@ DEVELOPED BY KHEPRICODE
 </div>
     
 <!-- CAMPAIGN HOME PAGE -->
-<div id = "home" style="display:none">
+<div id = "home" style="display:">
     <div class="container">
         <!-- MAP AND NOTES -->
         <div class="row" style="margin-bottom: 2vh">
@@ -158,27 +158,30 @@ DEVELOPED BY KHEPRICODE
                     MAP
                 </div></div>
             </div>
-            <div class="col-sm-5" id="notes">
+            <div class="col-sm-5">
                 <div class="card">
                     <div class="card-header">NOTES</div>
                     <div class="card-body" id='notes-table'>
+
                     <!-- BEGIN INDIVIDUAL NOTE -->
-                    <div id="accordion">
-                      <div class="card">
-                        <div class="card-header" id="headingOne">
-                          <h5 class="mb-0">
-                            <button class="btn btn-link" data-toggle="collapse" data-target="#noteCollapse" aria-expanded="false" aria-controls="noteCollapse">
-                              NOTE TITLE
-                            </button>
-                          </h5>
-                        </div>
-                        <div id="noteCollapse" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                          <div class="card-body">
-                            <p>NOTE TEXT BODY</p>
-                            <button type="button" class="btn btn-primary btn-sm">BANISH NOTE</button>
+                    <div id="noteitem">
+                        <div id="accordion">
+                          <div class="card">
+                            <div class="card-header" id="headingOne">
+                              <h5 class="mb-0">
+                                <button class="btn btn-link" data-toggle="collapse" data-target="#noteCollapse" aria-expanded="false" aria-controls="noteCollapse">
+                                  NOTE TITLE
+                                </button>
+                              </h5>
+                            </div>
+                            <div id="noteCollapse" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                              <div class="card-body">
+                                <p>NOTE TEXT BODY</p>
+                                <button type="button" class="btn btn-primary btn-sm">BANISH NOTE</button>
+                              </div>
+                            </div>
                           </div>
                         </div>
-                      </div>
                     </div>
                     <!-- END INDIVIDUAL NOTE -->
                     </div>
@@ -269,7 +272,7 @@ DEVELOPED BY KHEPRICODE
             <div class="col-sm-12" id="monsters">
                  <div class="card">
                     <div class="card-header">MONSTERS</div>
-                    <div class="card-body">
+                    <div class="card-body" id="monster-table">
                     <!-- BEGIN MONSTER -->
                     <div id="accordion">
                       <div class="card">
