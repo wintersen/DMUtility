@@ -135,13 +135,13 @@ DEVELOPED BY KHEPRICODE
           </div>
           <div class="modal-body">
             <form class="form-campaign" id='campaign-form' role="form">
-              <input type="text" name="titlecmp" class="form-control" placeholder="Campaign Title" required autofocus value="">
-              <font color="FF0000"><span id='errorMessageReg'></span></font>
+              <input type="text" name="newcampname" class="form-control" placeholder="Campaign Title" required autofocus value="">
+              <font color="FF0000"><span id='errorMessageCampaign'></span></font>
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick='$("#campaign-form")[0].reset(); $("#errorMessageReg").empty()'>Close</button>
-            <button type="button" class="btn btn-primary">Create</button>
+            <button type="button" id='close-create-campaign' class="btn btn-secondary" data-dismiss="modal" onclick='$("#campaign-form")[0].reset(); $("#errorMessageReg").empty()'>Close</button>
+            <button type="button" id='create-campaign' class="btn btn-primary">Create</button>
           </div>
         </div>
       </div>
@@ -149,7 +149,7 @@ DEVELOPED BY KHEPRICODE
 </div>
     
 <!-- CAMPAIGN HOME PAGE -->
-<div id = "home" style="display:">
+<div id = "home" style="display:none">
     <div class="container">
         <!-- MAP AND NOTES -->
         <div class="row" style="margin-bottom: 2vh">
