@@ -1,8 +1,101 @@
-p{
+/*
+Fonts:
     font-family: 'MedievalSharp', cursive;
+    font-family: 'UnifrakturMaguntia', cursive;
+    font-family: 'Oleo Script Swash Caps', cursive;
+    
+*/
+
+/*First Page*/
+#welcome{
+    display:inherit;
+    background-image:url(https://img00.deviantart.net/3089/i/2015/072/0/e/concept_art_army_3hr_by_zudartslee-d8llxbx.jpg);
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh
 }
-h1 {
+#welcHead{
     font-family: 'MedievalSharp', cursive;
     font-weight: bolder;
     font-size: 55px;
+}
+#mainJumbo{
+    background-color: rgba(218,243,248,0.5);
+}
+#mainIntro{
+    font-family: 'Oleo Script Swash Caps', cursive;
+    color: rgb(230,230,230);
+    font-size: 33px
+}
+.btn1{
+    background-color: slategrey;
+    color: white;
+    border-color: slategrey;
+}
+.btn1:hover{
+    background-color: skyblue;
+    border-style:solid;
+    border-color: royalblue;
+}
+.bkgd2{ /*For use in modal-content div*/
+    background-image: url(https://i.imgur.com/KqC7nch.jpg)
+}
+.mh{ /*Modal-header*/
+    border-bottom: transparent;
+}
+.mf{ /*Modal-footer*/
+    border-top: transparent;
+}
+/*For use in the "Save changes button in Login/Signup menu*/
+.sc{
+    background-color: brown;
+    color: white;
+    border-color: brown;
+}
+.sc:hover{
+    background-color: darkgoldenrod;
+    color: black;
+    border-color: brown;
+}
+
+/*Second Page*/
+#campain{
+   display:none;
+    background: url(https://img00.deviantart.net/b5fa/i/2017/193/1/a/snow_temple_by_zudartslee-dbg20mr.jpg);
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+}
+#campHead{
+    font-family: 'UnifrakturMaguntia', cursive;
+    font-size: 42px;
+    color: whitesmoke;
+}
+#campJumbo{
+    background-color: rgba(50,61,119,0.5);
+    font-size: 35px;
+    font-weight: 600;
+}
+#campIntro{
+    text-align: center;
+    font-size: 23px;
+    color: whitesmoke;
+    font-family: 'MedievalSharp', cursive;
+    font-weight: bolder;
+}
+#inProg{
+    font-family: 'Oleo Script Swash Caps', cursive;
+    text-decoration: underline;
+    color: whitesmoke;
+}
+/*btn1 for various campaigns*/
+#createCamp{
+    background-color: darkslategrey;
+    color: white;
+    border-color: lightslategrey;
+}
+#createCamp:hover{
+    background-color: grey;
+    color:ghostwhite;
+    border-color: white;
 }
