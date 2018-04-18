@@ -119,6 +119,15 @@ def get_campaigns():
         'campaigns': campaign_data
     })
 
+# store campaign
+@app.route('/setCampaign', methods=['POST'])
+def set_campaign():
+    cid = request.get_json(force=True)
+    session['cid'] = cid
+    return jsonify({
+        'set': True
+    })
+
 # creates a new campaign for a user
 @app.route('/newCampaign', methods=['POST'])
 def new_campaign():
