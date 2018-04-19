@@ -311,6 +311,7 @@ def delete_npc():
     nid = str(json_data['nid'])
     con = sql.connect("DM.db", timeout=10)
     con.row_factory = dict_factory
+    cur = con.cursor()
     cur.execute(schema.create_npcs_table)
     cur.execute(schema.delete_npc, (nid))
     con.commit()

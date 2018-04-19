@@ -170,7 +170,7 @@ $(document).ready(function(){
     });
     
     // banish npc
-    $('#npc-table').on('click', function(e){
+    $('#npcs-table').on('click', function(e){
         id = e.target.id;
         if (id.includes('banish-npc-')) {
             nid = id.split('-')[2];
