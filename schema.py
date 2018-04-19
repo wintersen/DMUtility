@@ -1,4 +1,10 @@
 #################################################################################
+# schema.py                                                                     #
+#                                                                               #
+# Stores the DB schema and all necessary queries for the server                 #
+#################################################################################
+
+#################################################################################
 # users table
 #################################################################################
 create_users_table = "CREATE TABLE IF NOT EXISTS users(" \
@@ -172,32 +178,3 @@ set_monster_chr = "UPDATE monsters SET chr=? WHERE id=?"
 set_monster_ac = "UPDATE monsters SET ac=? WHERE id=?"
 
 set_monster_hp = "UPDATE monsters SET hp=? WHERE id=?"
-
-#################################################################################
-# locations table
-#################################################################################
-create_locations_table = "CREATE TABLE IF NOT EXISTS locations(" \
-                  "id INTEGER PRIMARY KEY AUTOINCREMENT," \
-                  "campaign_id INTEGER NOT NULL," \
-                  "name TEXT NOT NULL," \
-                  "xcoord INTEGER," \
-                  "ycoord INTEGER," \
-                  "description TEXT," \
-                  "note TEXT," \
-                  "services TEXT," \
-                  "CONSTRAINT fk_locations FOREIGN KEY (campaign_id) " \
-                  "REFERENCES campaigns(id) ON DELETE CASCADE)"
-
-new_loc = "INSERT INTO locations(campaign_id, name, xcoord, ycoord, description, note, services) VALUES (?,?,?,?,?,?,?)"
-
-get_locs = "SELECT * FROM locations WHERE campaign_id=?"
-
-delete_loc = "DELETE FROM locations WHERE id=?"
-
-edit_loc = "UPDATE locations SET name=?, xcoord=?, ycoord=?, description=?, note=?, services=? WHERE id=?"
-
-set_loc_description = "UPDATE locations SET description=? WHERE id=?"
-
-set_loc_note = "UPDATE locations SET note=? WHERE id=?"
-
-set_loc_services = "UPDATE locations SET services=? WHERE id=?"
