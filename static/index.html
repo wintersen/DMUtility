@@ -15,31 +15,31 @@ DEVELOPED BY KHEPRICODE
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
   <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-  <link href="https://fonts.googleapis.com/css?family=MedievalSharp" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=MedievalSharp|UnifrakturMaguntia|Oleo Script Swash Caps" rel="stylesheet">
   <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}" type="text/css" />
   <link href="{{ url_for('static', filename='images/favicon.ico') }}" rel="icon" type="image/x-icon" />
 </head>
 <body>
 
 <!-- LOGIN PAGE -->
-<div id = "login" style = "display:; background-image:url(http://mapinstitute.org/data/wallpapers/139/im57801448.jpg); min-height: 100vh">
+<div id = "login">
     <!-- TOP DESIGN -->
     <div style="min-height: 25vh"></div>
-    <div class="jumbotron jumbotron-fluid text-center" style="background-image: url({{ url_for('static', filename='images/main_background.jpg') }});">
-        <h1>Dungeon Master's Keep</h1>
+    <div id="loginJumbo" class="jumbotron jumbotron-fluid text-center">
+        <h1 id="loginHead">Dungeon Master's Keep</h1>
     </div>
     <div class = "container text-center">
-        <h3 style="color:beige">Every great story needs a little help with the bookkeeping.</h3>
+        <h3 id="loginIntro">Every great story needs a little help with the bookkeeping.</h3>
         <div class = "row">
-            <div class = "col-sm-6"><button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#loginModal">Login</button></div>
-            <div class = "col-sm-6"><button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#registerModal">Sign Up</button></div>
+            <div class = "col-sm-6"><button type="button" class="btn btn-primary btn-lg btn-block btn1" data-toggle="modal" data-target="#loginModal">Login</button></div>
+            <div class = "col-sm-6"><button type="button" class="btn btn-primary btn-lg btn-block btn1" data-toggle="modal" data-target="#registerModal">Sign Up</button></div>
         </div>
     </div>
 </div>
 <!-- LOGIN MODAL -->
 <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
-    <div class="modal-content">
+    <div class="modal-content mc1">
       <div class="modal-header">
         <h5 class="modal-title" id="loginModalLabel">ENTER LOGIN INFORMATION</h5>
         <button type="button" id="close-login" class="close" data-dismiss="modal" aria-label="Close">
@@ -53,9 +53,9 @@ DEVELOPED BY KHEPRICODE
           <font color="FF0000"><span id='errorMessageLogin'></span></font>
         </form>
       </div>
-      <div class="modal-footer">
+      <div class="modal-footer mf">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick='$("#login-form")[0].reset(); $("#errorMessageLogin").empty()'>Close</button>
-        <button type="button" class="btn btn-primary" id='login-button'>Login</button>
+        <button type="button" class="btn btn-primary sc" id='login-button'>Login</button>
       </div>
     </div>
   </div>
@@ -63,7 +63,7 @@ DEVELOPED BY KHEPRICODE
 <!-- REGISTER MODAL -->
 <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
-    <div class="modal-content">
+    <div class="modal-content mc1">
       <div class="modal-header">
         <h5 class="modal-title" id="registerModalLabel">REGISTER NEW DUNGEON MASTER</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -80,46 +80,46 @@ DEVELOPED BY KHEPRICODE
           <font color="FF0000"><span id='errorMessageReg'></span></font>
         </form>
       </div>
-      <div class="modal-footer">
+      <div class="modal-footer mf">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick='$("#register-form")[0].reset(); $("#errorMessageReg").empty()'>Close</button>
-        <button type="button" class="btn btn-primary" id='register-button'>Register</button>
+        <button type="button" class="btn btn-primary sc" id='register-button'>Register</button>
       </div>
     </div>
   </div>
 </div>
 
 <!-- CAMPAIGN SELECTION PAGE -->
-<div id = "campaignselect" style="display:none">
+<div id = "campaignselect">
     <!-- TOP DESIGN -->
     <div style="min-height: vh"></div>
-    <div class="jumbotron jumbotron-fluid text-center" style="background-color: beige; font-size: 35px; font-weight: 600">
-        <p>Welcome, Dungeon Master.</p> 
+    <div id="campJumbo" class="jumbotron jumbotron-fluid text-center">
+        <p id="campHead">Welcome, Dungeon Master.</p> 
     </div>
 
     <!-- CAMPAIGN SELECTION -->
     <div class="container">
         <div class="row">
-            <h4>Select one of your pre-existing campaigns to enter it or click the button below to begin a new one.</h4>
+            <h4 id="campIntro">Select one of your pre-existing campaigns to enter it or click the button below to begin a new one.</h4>
         </div>
     </div>
         <br/>
     <div class="container">
         <div class="row">
-            <h3>In-Progress Campaigns</h3>
+            <h3 id="inProg">In-Progress Campaigns</h3>
         </div>
         <div class="container text-center" id="CampaignTableBody"></div>
-        <div class="row" style="margin-top:10vh; margin-bottom:10vh">
-            <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#campaignModal">Create New Campaign</button>
+        <div class="row" style="margin-top:10vh; margin-bottom: 10vh">
+            <button id="createCamp" type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#campaignModal">Create New Campaign</button>
         </div>
     </div>
 
     <!-- BOTTOM DESIGN -->
-    <div style="bottom:0; left:0; width:100%; min-height: 10vh; margin-top: 10vh;"></div>
+    <div id="campFooter" style="bottom:0; left:0; width:100%;">Khepricode Inc. &copy; 2018</div>
     
     <!-- CREATE CAMPAIGN MODAL -->
     <div class="modal fade" id="campaignModal" tabindex="-1" role="dialog" aria-labelledby="campaignModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
-        <div class="modal-content">
+        <div class="modal-content mc1">
           <div class="modal-header">
             <h5 class="modal-title" id="campaignModalLabel">CREATE YOUR CAMPAIGN</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -134,7 +134,7 @@ DEVELOPED BY KHEPRICODE
           </div>
           <div class="modal-footer">
             <button type="button" id='close-create-campaign' class="btn btn-secondary" data-dismiss="modal" onclick='$("#campaign-form")[0].reset(); $("#errorMessageReg").empty()'>Close</button>
-            <button type="button" id='create-campaign' class="btn btn-primary">Create</button>
+            <button type="button" id='create-campaign' class="btn btn-primary sc">Create</button>
           </div>
         </div>
       </div>
@@ -142,7 +142,8 @@ DEVELOPED BY KHEPRICODE
 </div>
     
 <!-- CAMPAIGN HOME PAGE -->
-<div id = "home" style="display:none">
+<div id = "home">
+    <div style="min-height: 10vh"></div>
     <div class="container">
         <!-- MAP AND NOTES -->
         <div class="row" style="margin-bottom: 2vh">
@@ -165,7 +166,7 @@ DEVELOPED BY KHEPRICODE
                             <div id="noteCollapse" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                               <div class="card-body">
                                 <p>NOTE TEXT BODY</p>
-                                <button type="button" class="btn btn-primary btn-sm">BANISH NOTE</button>
+                                <button type="button" class="btn btn-primary btn-sm banish">BANISH NOTE</button>
                               </div>
                             </div>
                           </div>
@@ -173,7 +174,7 @@ DEVELOPED BY KHEPRICODE
                     </div>
                     <!-- END INDIVIDUAL NOTE -->
                     </div>
-                    <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#noteModal">Create New Note</button>
+                    <button type="button" class="btn btn-primary btn-lg btn-block btn2" data-toggle="modal" data-target="#noteModal">Create New Note</button>
                 </div>
             </div>
         </div>
@@ -243,14 +244,14 @@ DEVELOPED BY KHEPRICODE
                                 </tr>
                               </tbody>
                             </table>
-                          <button type="button" class="btn btn-primary btn-sm">BANISH NPC</button>
+                          <button type="button" class="btn btn-primary btn-sm banish">BANISH NPC</button>
                           </div>
                         </div>
                       </div>
                     </div>
                     <!-- END NPC -->
                     </div>
-                    <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#npcModal">Create New NPC</button>
+                    <button type="button" class="btn btn-primary btn-lg btn-block btn2" data-toggle="modal" data-target="#npcModal">Create New NPC</button>
                 </div>
             </div>
         </div>
@@ -312,14 +313,14 @@ DEVELOPED BY KHEPRICODE
                                 </tr>
                               </tbody>
                             </table>
-                          <button type="button" class="btn btn-primary btn-sm">BANISH MONSTER</button>
+                          <button type="button" class="btn btn-primary btn-sm banish">BANISH MONSTER</button>
                           </div>
                         </div>
                       </div>
                     </div>
                     <!-- END MONSTER -->
                     </div>
-                     <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#monsterModal">Create New Monster</button>
+                     <button type="button" class="btn btn-primary btn-lg btn-block btn2" data-toggle="modal" data-target="#monsterModal">Create New Monster</button>
                 </div>
             </div>
         </div>
@@ -328,9 +329,9 @@ DEVELOPED BY KHEPRICODE
     <!-- NEW NOTE MODAL -->
     <div class="modal fade" id="noteModal" tabindex="-1" role="dialog" aria-labelledby="noteModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
-        <div class="modal-content">
+        <div class="modal-content mc2">
           <div class="modal-header">
-            <h5 class="modal-title" id="noteModalLabel">PEN A NEW NOTE</h5>
+            <h5 class="modal-title" id="noteModalLabel" style="font-family: 'Oleo Script Swash Caps', cursive;">PEN A NEW NOTE</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -344,7 +345,7 @@ DEVELOPED BY KHEPRICODE
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick='$("#note-form")[0].reset(); $("#errorMessageNote").empty()'>Close</button>
-            <button type="button" id="create-note" class="btn btn-primary">Create</button>
+            <button type="button" id="create-note" class="btn btn-primary sc2">Create</button>
           </div>
         </div>
       </div>
@@ -352,7 +353,7 @@ DEVELOPED BY KHEPRICODE
     <!-- NEW NPC MODAL -->
     <div class="modal fade" id="npcModal" tabindex="-1" role="dialog" aria-labelledby="npcModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
-        <div class="modal-content">
+        <div class="modal-content mc2">
           <div class="modal-header">
             <h5 class="modal-title" id="npcModalLabel">CREATE A NEW NPC</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -391,14 +392,14 @@ DEVELOPED BY KHEPRICODE
                         <th>CHR</th>
                     </thead>
                     <tr>
-                        <td><input type="text" name="hp" class="form-control" placeholder="0" required autofocus value=0></td>
-                        <td><input type="text" name="ac" class="form-control" placeholder="0" required autofocus value=0></td>
-                        <td><input type="text" name="str" class="form-control" placeholder="0" required autofocus value=0></td>
-                        <td><input type="text" name="dex" class="form-control" placeholder="0" required autofocus value=0></td>
-                        <td><input type="text" name="con" class="form-control" placeholder="0" required autofocus value=0></td>
-                        <td><input type="text" name="int" class="form-control" placeholder="0" required autofocus value=0></td>
-                        <td><input type="text" name="wis" class="form-control" placeholder="0" required autofocus value=0></td>
-                        <td><input type="text" name="chr" class="form-control" placeholder="0" required autofocus value=0></td>
+                        <td><input type="text" name="hp" class="form-control" placeholder="0" required autofocus value=""></td>
+                        <td><input type="text" name="ac" class="form-control" placeholder="0" required autofocus value=""></td>
+                        <td><input type="text" name="str" class="form-control" placeholder="0" required autofocus value=""></td>
+                        <td><input type="text" name="dex" class="form-control" placeholder="0" required autofocus value=""></td>
+                        <td><input type="text" name="con" class="form-control" placeholder="0" required autofocus value=""></td>
+                        <td><input type="text" name="int" class="form-control" placeholder="0" required autofocus value=""></td>
+                        <td><input type="text" name="wis" class="form-control" placeholder="0" required autofocus value=""></td>
+                        <td><input type="text" name="chr" class="form-control" placeholder="0" required autofocus value=""></td>
                     </tr>
                 </table>
                 </div>             
@@ -407,7 +408,7 @@ DEVELOPED BY KHEPRICODE
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick='$("#npc-form")[0].reset(); $("#errorMessageNPC").empty()'>Close</button>
-            <button type="button" id="create-npc" class="btn btn-primary">Create</button>
+            <button type="button" id="create-npc" class="btn btn-primary sc2">Create</button>
           </div>
         </div>
       </div>
@@ -415,7 +416,7 @@ DEVELOPED BY KHEPRICODE
     <!-- NEW MONSTER MODAL -->
     <div class="modal fade" id="monsterModal" tabindex="-1" role="dialog" aria-labelledby="monsterModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
-        <div class="modal-content">
+        <div class="modal-content mc2">
           <div class="modal-header">
             <h5 class="modal-title" id="monsterModalLabel">CREATE A NEW MONSTER</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -446,14 +447,14 @@ DEVELOPED BY KHEPRICODE
                         <th>CHR</th>
                     </thead>
                     <tr>
-                        <td><input type="text" name="hp" class="form-control" placeholder="0" required autofocus value=0></td>
-                        <td><input type="text" name="ac" class="form-control" placeholder="0" required autofocus value=0></td>
-                        <td><input type="text" name="str" class="form-control" placeholder="0" required autofocus value=0></td>
-                        <td><input type="text" name="dex" class="form-control" placeholder="0" required autofocus value=0></td>
-                        <td><input type="text" name="con" class="form-control" placeholder="0" required autofocus value=0></td>
-                        <td><input type="text" name="int" class="form-control" placeholder="0" required autofocus value=0></td>
-                        <td><input type="text" name="wis" class="form-control" placeholder="0" required autofocus value=0></td>
-                        <td><input type="text" name="chr" class="form-control" placeholder="0" required autofocus value=0></td>
+                        <td><input type="text" name="hp" class="form-control" placeholder="0" required autofocus value=""></td>
+                        <td><input type="text" name="ac" class="form-control" placeholder="0" required autofocus value=""></td>
+                        <td><input type="text" name="str" class="form-control" placeholder="0" required autofocus value=""></td>
+                        <td><input type="text" name="dex" class="form-control" placeholder="0" required autofocus value=""></td>
+                        <td><input type="text" name="con" class="form-control" placeholder="0" required autofocus value=""></td>
+                        <td><input type="text" name="int" class="form-control" placeholder="0" required autofocus value=""></td>
+                        <td><input type="text" name="wis" class="form-control" placeholder="0" required autofocus value=""></td>
+                        <td><input type="text" name="chr" class="form-control" placeholder="0" required autofocus value=""></td>
                     </tr>
                 </table>
                 </div>             
@@ -462,11 +463,14 @@ DEVELOPED BY KHEPRICODE
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick='$("#monster-form")[0].reset(); $("#errorMessageMonster").empty()'>Close</button>
-            <button type="button" id="create-monster" class="btn btn-primary">Create</button>
+            <button type="button" id="create-monster" class="btn btn-primary sc2">Create</button>
           </div>
         </div>
       </div>
     </div>
+    
+    <!-- BOTTOM DESIGN -->
+    <div id="campHomeFooter" style="bottom:0; left:0; width:100%;">Khepricode Inc. &copy; 2018</div>
 </div>
 
 
