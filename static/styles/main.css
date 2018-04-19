@@ -39,6 +39,7 @@ Fonts:
     background-size: cover;
     background-position: center;
     min-height: 100vh;
+    overflow: hidden;
 }
 #loginHead{
     font-family: 'MedievalSharp', cursive;
