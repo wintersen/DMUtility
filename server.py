@@ -124,6 +124,13 @@ def get_campaigns():
 def set_campaign():
     cid = request.get_json(force=True)
     session['cid'] = cid
+    con = sql.connect("DM.db", timeout=10)
+    con.row_factory = dict_factory
+    cur = con.cursor()
+    cur.execute(schema.set_campaign_status, ('In progress', str(cid)))
+    con.commit()
+    cur.close()
+    con.close()
     return jsonify({
         'set': True
     })
