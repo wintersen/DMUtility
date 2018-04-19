@@ -22,7 +22,7 @@ DEVELOPED BY KHEPRICODE
 <body>
 
 <!-- LOGIN PAGE -->
-<div id = "login">
+<div id = "login" style="position:relative;">
     <!-- TOP DESIGN -->
     <div style="min-height: 25vh"></div>
     <div id="loginJumbo" class="jumbotron jumbotron-fluid text-center">
@@ -35,6 +35,8 @@ DEVELOPED BY KHEPRICODE
             <div class = "col-sm-6"><button type="button" class="btn btn-primary btn-lg btn-block btn1" data-toggle="modal" data-target="#registerModal">Sign Up</button></div>
         </div>
     </div>
+    
+    <div id="campFooter" class="text-center"><img src="static/images/khepricode.png" height="40px" width="30px"></img> &nbsp; Khepricode Inc. &copy; 2018</div>
 </div>
 <!-- LOGIN MODAL -->
 <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
@@ -48,8 +50,8 @@ DEVELOPED BY KHEPRICODE
       </div>
       <div class="modal-body">
         <form class="form-signin" id='login-form' role="form">
-          <input type="text" name="username" class="form-control" placeholder="Username" required autofocus value="">
-          <input type="password" name="password" class="form-control" placeholder="Password" required value="">
+          <div class="form-group"><input type="text" name="username" class="form-control" placeholder="Username" required autofocus value=""></div>
+          <div class="form-group"><input type="password" name="password" class="form-control" placeholder="Password" required value=""></div>
           <font color="FF0000"><span id='errorMessageLogin'></span></font>
         </form>
       </div>
@@ -72,11 +74,11 @@ DEVELOPED BY KHEPRICODE
       </div>
       <div class="modal-body">
         <form class="form-register" id='register-form' role="form">
-          <input type="text" name="firstreg" class="form-control" placeholder="First name" required autofocus value="">
-          <input type="text" name="lastreg" class="form-control" placeholder="Last name" required value="">
-          <input type="text" name="userreg" class="form-control" placeholder="Username" required value="">
-          <input type="password" name="passwordreg" class="form-control" placeholder="Password" required value="">
-          <input type="password" name="passwordconfreg" class="form-control" placeholder="Confirm Password" required value="">
+          <div class="form-group"><input type="text" name="firstreg" class="form-control" placeholder="First name" required autofocus value=""></div>
+          <div class="form-group"><input type="text" name="lastreg" class="form-control" placeholder="Last name" required value=""></div>
+          <div class="form-group"><input type="text" name="userreg" class="form-control" placeholder="Username" required value=""></div>
+          <div class="form-group"><input type="password" name="passwordreg" class="form-control" placeholder="Password" required value=""></div>
+          <div class="form-group"><input type="password" name="passwordconfreg" class="form-control" placeholder="Confirm Password" required value=""></div>
           <font color="FF0000"><span id='errorMessageReg'></span></font>
         </form>
       </div>
@@ -89,11 +91,11 @@ DEVELOPED BY KHEPRICODE
 </div>
 
 <!-- CAMPAIGN SELECTION PAGE -->
-<div id = "campaignselect">
+<div id = "campaignselect" style="position:relative;">
     <!-- TOP DESIGN -->
     <div style="min-height: vh"></div>
     <div id="campJumbo" class="jumbotron jumbotron-fluid text-center">
-        <button id="logout-button" onclick='location.reload()'>Logout</button>
+        <button id="logout-button" class="btn btn-sm" onclick='location.reload()'>Logout</button>
         <p id="campHead">Welcome, Dungeon Master.</p> 
     </div>
 
@@ -115,7 +117,7 @@ DEVELOPED BY KHEPRICODE
     </div>
 
     <!-- BOTTOM DESIGN -->
-    <div id="campFooter">Khepricode Inc. &copy; 2018</div>
+    <div id="campFooter" class="text-center"><img src="static/images/khepricode.png" height="40px" width="30px"></img> &nbsp; Khepricode Inc. &copy; 2018</div>
     
     <!-- CREATE CAMPAIGN MODAL -->
     <div class="modal fade" id="campaignModal" tabindex="-1" role="dialog" aria-labelledby="campaignModalLabel" aria-hidden="true">
@@ -143,9 +145,9 @@ DEVELOPED BY KHEPRICODE
 </div>
     
 <!-- CAMPAIGN HOME PAGE -->
-<div id = "home">
+<div id = "home" style="position:relative;">
     <div style="min-height: 10vh">
-        <button id="logout-button" onclick='location.reload()'>Logout</button>
+        <button id="logout-button" class="btn btn-sm" onclick='location.reload()'>Logout</button>
     </div>
     <div class="container">
         <!-- MAP AND NOTES -->
@@ -473,7 +475,7 @@ DEVELOPED BY KHEPRICODE
     </div>
     
     <!-- BOTTOM DESIGN -->
-    <div id="campHomeFooter">Khepricode Inc. &copy; 2018</div>
+    <div id="campHomeFooter" class="text-center"><img src="static/images/khepricode.png" height="40px" width="30px"></img> &nbsp; Khepricode Inc. &copy; 2018</div>
 </div>
 
 
