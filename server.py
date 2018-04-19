@@ -110,7 +110,7 @@ def get_campaigns():
     con.row_factory = dict_factory
     cur = con.cursor()
     cur.execute(schema.create_campaigns_table)
-    cur.execute(schema.get_campaigns, (str(uid)))
+    cur.execute(schema.get_campaigns, (uid,))
     campaign_data = cur.fetchall()
     con.commit()
     cur.close()
@@ -127,7 +127,7 @@ def set_campaign():
     con = sql.connect("DM.db", timeout=10)
     con.row_factory = dict_factory
     cur = con.cursor()
-    cur.execute(schema.set_campaign_status, ('In progress', str(cid)))
+    cur.execute(schema.set_campaign_status, ('In progress', (str(cid)),))
     con.commit()
     cur.close()
     con.close()
@@ -145,7 +145,7 @@ def new_campaign():
     cur = con.cursor()
     cur.execute(schema.create_users_table)
     cur.execute(schema.create_campaigns_table)
-    cur.execute(schema.new_campaign, (str(uid), name))
+    cur.execute(schema.new_campaign, (uid, name))
     con.commit()
     cur.close()
     con.close()
@@ -161,7 +161,7 @@ def delete_campaign():
     con.row_factory = dict_factory
     cur = con.cursor()
     cur.execute(schema.create_campaigns_table)
-    cur.execute(schema.delete_campaign, (str(cid)))
+    cur.execute(schema.delete_campaign, (cid,))
     con.commit()
     cur.close()
     con.close()
@@ -198,7 +198,7 @@ def get_notes():
     con.row_factory = dict_factory
     cur = con.cursor()
     cur.execute(schema.create_notes_table)
-    cur.execute(schema.get_notes, (cid))
+    cur.execute(schema.get_notes, (cid,))
     notes = cur.fetchall()
     con.commit()
     cur.close()
@@ -233,7 +233,7 @@ def delete_note():
     con = sql.connect("DM.db", timeout=10)
     con.row_factory = dict_factory
     cur = con.cursor()
-    cur.execute(schema.delete_note, (nid))
+    cur.execute(schema.delete_note, (nid,))
     con.commit()
     cur.close()
     con.close()
@@ -270,7 +270,7 @@ def get_npcs():
     con.row_factory = dict_factory
     cur = con.cursor()
     cur.execute(schema.create_npcs_table)
-    cur.execute(schema.get_npcs, (cid))
+    cur.execute(schema.get_npcs, (cid,))
     npcs = cur.fetchall()
     con.commit()
     cur.close()
@@ -316,11 +316,12 @@ def new_npc():
 def delete_npc():
     json_data = request.get_json(force=True)
     nid = str(json_data['nid'])
+    print (nid)
     con = sql.connect("DM.db", timeout=10)
     con.row_factory = dict_factory
     cur = con.cursor()
     cur.execute(schema.create_npcs_table)
-    cur.execute(schema.delete_npc, (nid))
+    cur.execute(schema.delete_npc, (nid,))
     con.commit()
     cur.close()
     con.close()
@@ -372,7 +373,7 @@ def get_monsters():
     con.row_factory = dict_factory
     cur = con.cursor()
     cur.execute(schema.create_monsters_table)
-    cur.execute(schema.get_monsters, (cid))
+    cur.execute(schema.get_monsters, (cid,))
     monsters = cur.fetchall()
     con.commit()
     cur.close()
@@ -417,7 +418,7 @@ def delete_monster():
     con.row_factory = dict_factory
     cur = con.cursor()
     cur.execute(schema.create_monsters_table)
-    cur.execute(schema.delete_monster, (mid))
+    cur.execute(schema.delete_monster, (mid,))
     con.commit()
     cur.close()
     con.close()
@@ -464,7 +465,7 @@ def get_locations():
     con.row_factory = dict_factory
     cur = con.cursor()
     cur.execute(schema.create_locations_table)
-    cur.execute(schema.get_locs, (cid))
+    cur.execute(schema.get_locs, (cid,))
     locs = cur.fetchall()
     con.commit()
     cur.close()
@@ -503,7 +504,7 @@ def delete_loc():
     con.row_factory = dict_factory
     cur = con.cursor()
     cur.execute(schema.create_locations_table)
-    cur.execute(schema.delete_loc, (lid))
+    cur.execute(schema.delete_loc, (lid,))
     con.commit()
     cur.close()
     con.close()
