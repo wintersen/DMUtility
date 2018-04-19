@@ -97,7 +97,7 @@ $(document).ready(function(){
                 if(response.created === true) {
                     $('#npc-form').trigger("reset");
                     $('#errorMessageNPC').text('Successfully created new NPC.');
-                    // getNPCTable();
+                    getNPCTable();
                 }else{
                     $('#errorMessageNPC').text('Creation failed. Try again.');
                 }
@@ -118,7 +118,7 @@ $(document).ready(function(){
                 if(response.created === true) {
                     $('#monster-form').trigger("reset");
                     $('#errorMessageMonster').text('Successfully created new monster.');
-                    // getMonsterTable();
+                    getMonsterTable();
                 }else{
                     $('#errorMessageMonster').text('Creation failed. Try again.');
                 }
@@ -232,20 +232,17 @@ $(document).ready(function(){
         cid = localStorage.getItem('cid');
         $.ajax({
             url: '/npcs',
-            data: {
+            /*data: {
                 cid: JSON.stringify(cid)
-            },
+            },*/
             contentType: "application/json",
             dataType: "json",
-            type: 'GET',
+            type: 'POST',
             success: function(response) {
-                $('#NPCTableBody').empty();
+                $('#npcs-table').empty();
                 response.npcs.forEach(function(val){
-                    $('#NPCTableBody').append("<tr><td>" + val.id + "</td><td>" + val.name + "</td><td>" + 
-                        val.occupation + "</td><td>" + val.description + "</td><td>" + val.traits + "</td><td>" + 
-                        val.race + "</td><td>" + val.alignment + "</td><td>" + val.note + "</td><td>" + 
-                        val.str + "</td><td>" + val.dex + "</td><td>" + val.con + "</td><td>" + val.int + "</td><td>" + 
-                        val.wis + "</td><td>" + val.chr + "</td><td>" + val.ac + "</td><td>" + val.hp + "</td></tr>");
+                    $('#npcs-table').append("<div id='npcacc" + val.id + "'><div class='card'><div class='card-header' id='npchead" + val.id + "'><h5 class='mb-0'><button class='btn btn-link' data-toggle='collapse' data-target='#npc" + val.id + "' aria-expanded='false' aria-controls='npc" + val.id + "' id='NPC_name'>" + val.name + "</button></h5></div><div id='npc" + val.id + "' class='collapse' aria-labelledby='npchead" + val.id + "' data-parent='#npcacc" + val.id + "'><div class='card-body'><table class='table text-center'><thead><tr><th scope='col'>JOB</th><th scope='col>DESCRIPTION</th><th scope='col'>TRAITS</th><th scope='col'>RACE</th><th scope='col'>ALIGNMENT</th><th scope='col'>STATS</th></tr></thead><tbody><tr><td id='job_td'>" + val.ocupation +"</td><td id='desc_td'>" + val.description +"</td><td id='traits_td'>" + val.traits +"</td><td id='race_td'>" + val.race +"</td><td id='align_td'>" + val.alignment +"</td><td id='stats_td'><table><thead><th>HP</th><th>AC</th><th>STR</th><th>DEX</th><th>CON</th><th>INT</th><th>WIS</th><th>CHR</th></thead><tr><td id='HP_td'>" + val.hp +"</td><td id='AC_td'>" + val.ac +"</td><td id='STR_td'>" + val.str +"</td><td id='DEX_td'>" + val.dex +"</td><td id='CON_td'>" + val.con +"</td><td id='INT_td'>" + val.int +"</td><td id='WIS_td'>" + val.wis +"</td><td id='CHR_td'>" + val.chr +"</td></tr></table></td></tr></tbody></table><button type='button' class='btn btn-primary btn-sm' id='banish-npc-" + val.id + "'>BANISH NPC</button></div></div></div></div>");
+                    $('#npcs-table').append("fuck");
                 });
             },
             error: function(error) {
@@ -268,7 +265,7 @@ $(document).ready(function(){
                 $('#monster-table').empty();
                 response.monsters.forEach(function(val){
                     $('#monster-table').append(
-                        "<div id='monacc" + val.id + "'><div class='card'><div class='card-header' id='monhead" + val.id + "'><h5 class='mb-0'><button class='btn btn-link' data-toggle='collapse' data-target='#mon" + val.id + "' aria-expanded='false' aria-controls='mon" + val.id + "' id='mon_name'>" + val.name + "</button></h5></div><div id='mon" + val.id + "' class='collapse' aria-labelledby='monhead" + val.id + "' data-parent='#monacc" + val.id + "'><div class='card-body'><table class='table text-center'><thead><tr><th scope='col'>EQUIPMENT</th><th scope='col'>DESCRIPTION</th><th scope='col'>STATS</th></tr></thead><tbody><tr><td id='equip_td'>" + val.equipment + "</td><td id='m_desc_td'>" + val.description + "</td><td id='m_stats_td'><table style='margin: 0px auto'><thead><th>HP</th><th>AC</th><th>STR</th><th>DEX</th><th>CON</th><th>INT</th><th>WIS</th><th>CHR</th></thead><tr><td id='mHP_td'>" + val.hp + "</td><td id='mAC_td'>" + val.ac +"</td><td id='mSTR_td'>" + val.str +"</td><td id='mDEX_td'>" + val.dex +"</td><td id='mCON_td'>" + val.con +"</td><td id='mINT_td'>" + val.int +"</td><td id='mWIS_td'>" + val.wis +"</td><td id='mCHR_td'>" + val.chr +"</td></tr></table></td></tr></tbody></table><button type='button' class='btn btn-primary btn-sm'>BANISH MONSTER</button></div></div></div></div>"                 
+                        "<div id='monacc" + val.id + "'><div class='card'><div class='card-header' id='monhead" + val.id + "'><h5 class='mb-0'><button class='btn btn-link' data-toggle='collapse' data-target='#mon" + val.id + "' aria-expanded='false' aria-controls='mon" + val.id + "' id='mon_name'>" + val.name + "</button></h5></div><div id='mon" + val.id + "' class='collapse' aria-labelledby='monhead" + val.id + "' data-parent='#monacc" + val.id + "'><div class='card-body'><table class='table text-center'><thead><tr><th scope='col'>EQUIPMENT</th><th scope='col'>DESCRIPTION</th><th scope='col'>STATS</th></tr></thead><tbody><tr><td id='equip_td'>" + val.equipment + "</td><td id='m_desc_td'>" + val.note + "</td><td id='m_stats_td'><table style='margin: 0px auto'><thead><th>HP</th><th>AC</th><th>STR</th><th>DEX</th><th>CON</th><th>INT</th><th>WIS</th><th>CHR</th></thead><tr><td id='mHP_td'>" + val.hp + "</td><td id='mAC_td'>" + val.ac +"</td><td id='mSTR_td'>" + val.str +"</td><td id='mDEX_td'>" + val.dex +"</td><td id='mCON_td'>" + val.con +"</td><td id='mINT_td'>" + val.int +"</td><td id='mWIS_td'>" + val.wis +"</td><td id='mCHR_td'>" + val.chr +"</td></tr></table></td></tr></tbody></table><button type='button' class='btn btn-primary btn-sm'>BANISH MONSTER</button></div></div></div></div>"                 
                     );
                 });
             },
