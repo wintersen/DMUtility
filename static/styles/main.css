@@ -121,6 +121,10 @@ Fonts:
 #campFooter{
     color: ghostwhite;
     font-size: 12px;
+    position: inherit;
+    bottom: 0;
+    left: 0;
+    width: 100%;
 }
 
 
@@ -175,6 +179,24 @@ Fonts:
 #campHomeFooter{
     color: palegoldenrod;
     font-size: 12px;
+    bottom: 0;
+    left: 0;
+    position: inherit;
+    width: 100%;
 }
-
-
+#logout-button {
+    top:0;
+    right:0;
+    position:absolute;
+    font-size: 12px;
+    background-color: rgba(0,0,0,0.8);
+    color: ghostwhite;
+}
+#back-button {
+    left: 0;
+    top: 0;
+    position: absolute;
+    font-size: 12px;
+    background-color: rgba(0,0,0,0,8);
+    color: ghostwhite;
+}
