@@ -230,7 +230,7 @@ $(document).ready(function(){
                 $('#CampaignTableBody').empty();
                 response.campaigns.forEach(function(val){
                     $('#CampaignTableBody').append("<div class='row text-center'><button type='button' id='campaign-selection-button-" + val.id + 
-                        "' class='btn btn-secondary btn-lg btn-block'><div class='row text-center'><div class='col-sm-4'>" + val.name + 
+                        "' class='btn1 btn-secondary btn-lg btn-block'><div class='row text-center'><div class='col-sm-4'>" + val.name + 
                         "</div><div class='col-sm-4'> Status: " + val.status + "</div></div></button></row>");
                 });
             },
