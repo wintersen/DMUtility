@@ -107,14 +107,7 @@ DEVELOPED BY KHEPRICODE
         <div class="row">
             <h3>In-Progress Campaigns</h3>
         </div>
-        <table class="table" style="width: 80%">
-          <thead>
-            <th scope="col">Name</th>
-            <th scope="col">Status</th>
-          </thead>
-          <tbody id="CampaignTableBody"></tbody>
-        </table>
-        <div class="container" id="CampaignTableBody"></div>
+        <div class="container text-center" id="CampaignTableBody"></div>
         <div class="row" style="margin-top:10vh; margin-bottom:10vh">
             <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#campaignModal">Create New Campaign</button>
         </div>
@@ -136,8 +129,6 @@ DEVELOPED BY KHEPRICODE
           <div class="modal-body">
             <form class="form-campaign" id='campaign-form' role="form">
               <input type="text" name="newcampname" class="form-control" placeholder="Campaign Title" required autofocus value="">
-                <input name="length_x" class="form-control" type="number" min="1" max="10">
-                <input name="length_y" class="form-control" type="number" min="1" max="10">
               <font color="FF0000"><span id='errorMessageCampaign'></span></font>
             </form>
           </div>
@@ -155,12 +146,7 @@ DEVELOPED BY KHEPRICODE
     <div class="container">
         <!-- MAP AND NOTES -->
         <div class="row" style="margin-bottom: 2vh">
-            <div class="col-sm-7" id="map">
-                <div class="card"><div class="card-body">
-                    MAP
-                </div></div>
-            </div>
-            <div class="col-sm-5">
+            <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header">NOTES</div>
                     <div class="card-body" id='notes-table'>

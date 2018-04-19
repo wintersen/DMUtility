@@ -229,9 +229,9 @@ $(document).ready(function(){
             success: function(response) {
                 $('#CampaignTableBody').empty();
                 response.campaigns.forEach(function(val){
-                    $('#CampaignTableBody').append("<tr><td><button type='button' id='campaign-selection-button-" + val.id + 
-                        "' class='btn btn-secondary brn-lg brn-block'><div class='row text-center'><div class='col-sm-4'>" + val.name + 
-                        "</div><div class='col-sm-4'>" + val.status + "</div></div></button></td></tr>");
+                    $('#CampaignTableBody').append("<div class='row text-center'><button type='button' id='campaign-selection-button-" + val.id + 
+                        "' class='btn btn-secondary btn-lg btn-block'><div class='row text-center'><div class='col-sm-4'>" + val.name + 
+                        "</div><div class='col-sm-4'> Status: " + val.status + "</div></div></button></row>");
                 });
             },
             error: function(error) {
