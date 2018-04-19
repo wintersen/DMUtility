@@ -68,7 +68,7 @@ edit_note_content = "UPDATE notes SET content=? WHERE id=?"
 create_npcs_table = "CREATE TABLE IF NOT EXISTS npcs(" \
                   "id          INTEGER PRIMARY KEY AUTOINCREMENT," \
                   "campaign_id INTEGER," \
-                  "loc_id      INTEGER," \
+                  "loc_id      TEXT," \
                   "name        TEXT    NOT NULL," \
                   "occupation  TEXT," \
                   "description TEXT," \

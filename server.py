@@ -283,7 +283,7 @@ def get_npcs():
 @app.route('/newNpc', methods=['POST'])
 def new_npc():
     cid = str(session['cid'])
-    lid = str(0)
+    lid = request.form['lid']
     name = request.form['name']
     occ = request.form['occupation']
     desc = request.form['desc']
@@ -453,86 +453,86 @@ def edit_monster():
         'edited': True
     })
 
-#################################################################################
-# locations
-#################################################################################
+# #################################################################################
+# # locations
+# #################################################################################
 
-# get locations by campaign
-@app.route('/locations', methods=['POST'])
-def get_locations():
-    cid = str(request.form['cid'])
-    con = sql.connect("DM.db", timeout=10)
-    con.row_factory = dict_factory
-    cur = con.cursor()
-    cur.execute(schema.create_locations_table)
-    cur.execute(schema.get_locs, (cid,))
-    locs = cur.fetchall()
-    con.commit()
-    cur.close()
-    con.close()
-    return jsonify({
-        'locations': locs
-    })
+# # get locations by campaign
+# @app.route('/locations', methods=['POST'])
+# def get_locations():
+#     cid = str(request.form['cid'])
+#     con = sql.connect("DM.db", timeout=10)
+#     con.row_factory = dict_factory
+#     cur = con.cursor()
+#     cur.execute(schema.create_locations_table)
+#     cur.execute(schema.get_locs, (cid,))
+#     locs = cur.fetchall()
+#     con.commit()
+#     cur.close()
+#     con.close()
+#     return jsonify({
+#         'locations': locs
+#     })
 
-# new location
-@app.route('/newLocation', methods=['POST'])
-def new_loc():
-    cid = str(request.form['cid'])
-    name = request.form['name']
-    x = str(request.form['xcoord'])
-    y = str(request.form['ycoord'])
-    desc = request.form['desc']
-    note = request.form['note']
-    services = request.form['services']
-    con = sql.connect("DM.db", timeout=10)
-    con.row_factory = dict_factory
-    cur = con.cursor()
-    cur.execute(schema.create_locations_table)
-    cur.execute(schema.new_loc, (cid, name, x, y, desc, note, services))
-    con.commit()
-    cur.close()
-    con.close()
-    return jsonify({
-        'created': True
-    })
+# # new location
+# @app.route('/newLocation', methods=['POST'])
+# def new_loc():
+#     cid = str(request.form['cid'])
+#     name = request.form['name']
+#     x = str(request.form['xcoord'])
+#     y = str(request.form['ycoord'])
+#     desc = request.form['desc']
+#     note = request.form['note']
+#     services = request.form['services']
+#     con = sql.connect("DM.db", timeout=10)
+#     con.row_factory = dict_factory
+#     cur = con.cursor()
+#     cur.execute(schema.create_locations_table)
+#     cur.execute(schema.new_loc, (cid, name, x, y, desc, note, services))
+#     con.commit()
+#     cur.close()
+#     con.close()
+#     return jsonify({
+#         'created': True
+#     })
 
-# delete location
-@app.route('/locations', methods=['DELETE'])
-def delete_loc():
-    lid = str(request.form['lid'])
-    con = sql.connect("DM.db", timeout=10)
-    con.row_factory = dict_factory
-    cur = con.cursor()
-    cur.execute(schema.create_locations_table)
-    cur.execute(schema.delete_loc, (lid,))
-    con.commit()
-    cur.close()
-    con.close()
-    return jsonify({
-        'deleted': True
-    })
+# # delete location
+# @app.route('/locations', methods=['DELETE'])
+# def delete_loc():
+#     lid = str(request.form['lid'])
+#     con = sql.connect("DM.db", timeout=10)
+#     con.row_factory = dict_factory
+#     cur = con.cursor()
+#     cur.execute(schema.create_locations_table)
+#     cur.execute(schema.delete_loc, (lid,))
+#     con.commit()
+#     cur.close()
+#     con.close()
+#     return jsonify({
+#         'deleted': True
+#     })
 
-# edit location
-@app.route('/editLocation', methods=['POST'])
-def edit_loc():
-    lid = str(request.form['lid'])
-    name = request.form['name']
-    x = str(request.form['xcoord'])
-    y = str(request.form['ycoord'])
-    desc = request.form['desc']
-    note = request.form['note']
-    services = request.form['services']
-    con = sql.connect("DM.db", timeout=10)
-    con.row_factory = dict_factory
-    cur = con.cursor()
-    cur.execute(schema.create_locations_table)
-    cur.execute(schema.edit_loc, (name, x, y, desc, note, services, lid))
-    con.commit()
-    cur.close()
-    con.close()
-    return jsonify({
-        'edited': True
-    })
+# # edit location
+# @app.route('/editLocation', methods=['POST'])
+# def edit_loc():
+#     lid = str(request.form['lid'])
+#     name = request.form['name']
+#     x = str(request.form['xcoord'])
+#     y = str(request.form['ycoord'])
+#     desc = request.form['desc']
+#     note = request.form['note']
+#     services = request.form['services']
+#     con = sql.connect("DM.db", timeout=10)
+#     con.row_factory = dict_factory
+#     cur = con.cursor()
+#     cur.execute(schema.create_locations_table)
+#     cur.execute(schema.edit_loc, (name, x, y, desc, note, services, lid))
+#     con.commit()
+#     cur.close()
+#     con.close()
+#     return jsonify({
+#         'edited': True
+#     })
 
 
 app.secret_key = 'A0Zr76j/3yX R~X0H!jmN]LWX/,?RT'
