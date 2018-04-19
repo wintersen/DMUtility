@@ -146,6 +146,74 @@ $(document).ready(function(){
         cid = temp.id.split("-")[3];
         openCampaign(cid);
     });
+
+    $('#notes-table').on('click', function(e){
+        id = e.target.id;
+        if (id.includes('banish-note-')) {
+            nid = id.split('-')[2];
+            $.ajax({
+                url: '/notes',
+                type: 'DELETE',
+                data: JSON.stringify({ nid: nid }),
+                contentType: 'application/json',
+                dataType: 'json',
+                success: function(response){
+                    if (response.deleted) {
+                        getNotesTable();
+                    }
+                },
+                error: function(error){
+                    console.log(error);
+                }
+            });
+        }
+    });
+    
+    // banish npc
+    $('#npc-table').on('click', function(e){
+        id = e.target.id;
+        if (id.includes('banish-npc-')) {
+            nid = id.split('-')[2];
+            $.ajax({
+                url: '/npcs',
+                type: 'DELETE',
+                data: JSON.stringify({ nid: nid }),
+                contentType: 'application/json',
+                dataType: 'json',
+                success: function(response){
+                    if (response.deleted) {
+                        getNPCTable();
+                    }
+                },
+                error: function(error){
+                    console.log(error);
+                }
+            });
+        }
+    });
+    
+    // banish monster
+    $('#monster-table').on('click', function(e){
+        id = e.target.id;
+        if (id.includes('banish-monster-')) {
+            mid = id.split('-')[2];
+            $.ajax({
+                url: '/monsters',
+                type: 'DELETE',
+                data: JSON.stringify({ mid: mid }),
+                contentType: 'application/json',
+                dataType: 'json',
+                success: function(response){
+                    if (response.deleted) {
+                        getMonsterTable();
+                    }
+                },
+                error: function(error){
+                    console.log(error);
+                }
+            });
+        }
+    });
     
     // get campaign list
     function getCampaignTable(){
@@ -268,7 +336,7 @@ $(document).ready(function(){
                 $('#monster-table').empty();
                 response.monsters.forEach(function(val){
                     $('#monster-table').append(
-                        "<div id='monacc" + val.id + "'><div class='card'><div class='card-header' id='monhead" + val.id + "'><h5 class='mb-0'><button class='btn btn-link' data-toggle='collapse' data-target='#mon" + val.id + "' aria-expanded='false' aria-controls='mon" + val.id + "' id='mon_name'>" + val.name + "</button></h5></div><div id='mon" + val.id + "' class='collapse' aria-labelledby='monhead" + val.id + "' data-parent='#monacc" + val.id + "'><div class='card-body'><table class='table text-center'><thead><tr><th scope='col'>EQUIPMENT</th><th scope='col'>DESCRIPTION</th><th scope='col'>STATS</th></tr></thead><tbody><tr><td id='equip_td'>" + val.equipment + "</td><td id='m_desc_td'>" + val.description + "</td><td id='m_stats_td'><table style='margin: 0px auto'><thead><th>HP</th><th>AC</th><th>STR</th><th>DEX</th><th>CON</th><th>INT</th><th>WIS</th><th>CHR</th></thead><tr><td id='mHP_td'>" + val.hp + "</td><td id='mAC_td'>" + val.ac +"</td><td id='mSTR_td'>" + val.str +"</td><td id='mDEX_td'>" + val.dex +"</td><td id='mCON_td'>" + val.con +"</td><td id='mINT_td'>" + val.int +"</td><td id='mWIS_td'>" + val.wis +"</td><td id='mCHR_td'>" + val.chr +"</td></tr></table></td></tr></tbody></table><button type='button' class='btn btn-primary btn-sm'>BANISH MONSTER</button></div></div></div></div>"                 
+                        "<div id='monacc" + val.id + "'><div class='card'><div class='card-header' id='monhead" + val.id + "'><h5 class='mb-0'><button class='btn btn-link' data-toggle='collapse' data-target='#mon" + val.id + "' aria-expanded='false' aria-controls='mon" + val.id + "' id='mon_name'>" + val.name + "</button></h5></div><div id='mon" + val.id + "' class='collapse' aria-labelledby='monhead" + val.id + "' data-parent='#monacc" + val.id + "'><div class='card-body'><table class='table text-center'><thead><tr><th scope='col'>EQUIPMENT</th><th scope='col'>DESCRIPTION</th><th scope='col'>STATS</th></tr></thead><tbody><tr><td id='equip_td'>" + val.equipment + "</td><td id='m_desc_td'>" + val.description + "</td><td id='m_stats_td'><table style='margin: 0px auto'><thead><th>HP</th><th>AC</th><th>STR</th><th>DEX</th><th>CON</th><th>INT</th><th>WIS</th><th>CHR</th></thead><tr><td id='mHP_td'>" + val.hp + "</td><td id='mAC_td'>" + val.ac +"</td><td id='mSTR_td'>" + val.str +"</td><td id='mDEX_td'>" + val.dex +"</td><td id='mCON_td'>" + val.con +"</td><td id='mINT_td'>" + val.int +"</td><td id='mWIS_td'>" + val.wis +"</td><td id='mCHR_td'>" + val.chr +"</td></tr></table></td></tr></tbody></table><button type='button' id='banish-monster-" + val.id + "' class='btn btn-primary btn-sm'>BANISH MONSTER</button></div></div></div></div>"                 
                     );
                 });
             },
