@@ -221,7 +221,8 @@ def new_note():
 # delete note
 @app.route('/notes', methods=['DELETE'])
 def delete_note():
-    nid = str(request.form['nid'])
+    json_data = request.get_json(force=True)
+    nid = str(json_data['nid'])
     con = sql.connect("DM.db", timeout=10)
     con.row_factory = dict_factory
     cur = con.cursor()
@@ -306,7 +307,8 @@ def new_npc():
 # delete npc
 @app.route('/npcs', methods=['DELETE'])
 def delete_npc():
-    nid = str(request.form['nid'])
+    json_data = request.get_json(force=True)
+    nid = str(json_data['nid'])
     con = sql.connect("DM.db", timeout=10)
     con.row_factory = dict_factory
     cur.execute(schema.create_npcs_table)
@@ -401,7 +403,8 @@ def new_monster():
 # delete monster
 @app.route('/monsters', methods=['DELETE'])
 def delete_monster():
-    mid = str(request.form['mid'])
+    json_data = request.get_json(force=True)
+    mid = str(json_data['mid'])
     con = sql.connect("DM.db", timeout=10)
     con.row_factory = dict_factory
     cur = con.cursor()
