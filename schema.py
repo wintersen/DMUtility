@@ -91,7 +91,7 @@ create_npcs_table = "CREATE TABLE IF NOT EXISTS npcs(" \
 
 new_npc = "INSERT INTO npcs(campaign_id, loc_id, name, occupation, description, traits, race, alignment, note, str, dex, con, int, wis, chr, ac, hp) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
 
-get_npcs = "SELECT n.*, l.name FROM npcs n, locations l WHERE n.campaign_id=l.campaign_id AND n.campaign_id=?"
+get_npcs = "SELECT * FROM npcs WHERE campaign_id=?"
 
 delete_npc = "DELETE FROM npcs WHERE id=?"
 

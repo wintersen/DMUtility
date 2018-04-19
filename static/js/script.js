@@ -254,7 +254,7 @@ $(document).ready(function(){
                     $('#home').show();
                     console.log("CID: " + cid);
                     getNotesTable();
-                    // getNPCTable();
+                    getNPCTable();
                     getMonsterTable();
                 }
             },
@@ -307,10 +307,10 @@ $(document).ready(function(){
             dataType: "json",
             type: 'POST',
             success: function(response) {
+                console.log(response.npcs);
                 $('#npcs-table').empty();
                 response.npcs.forEach(function(val){
                     $('#npcs-table').append("<div id='npcacc" + val.id + "'><div class='card'><div class='card-header' id='npchead" + val.id + "'><h5 class='mb-0'><button class='btn btn-link' data-toggle='collapse' data-target='#npc" + val.id + "' aria-expanded='false' aria-controls='npc" + val.id + "' id='NPC_name'>" + val.name + "</button></h5></div><div id='npc" + val.id + "' class='collapse' aria-labelledby='npchead" + val.id + "' data-parent='#npcacc" + val.id + "'><div class='card-body'><table class='table text-center'><thead><tr><th scope='col'>JOB</th><th scope='col>DESCRIPTION</th><th scope='col'>TRAITS</th><th scope='col'>RACE</th><th scope='col'>ALIGNMENT</th><th scope='col'>STATS</th></tr></thead><tbody><tr><td id='job_td'>" + val.ocupation +"</td><td id='desc_td'>" + val.description +"</td><td id='traits_td'>" + val.traits +"</td><td id='race_td'>" + val.race +"</td><td id='align_td'>" + val.alignment +"</td><td id='stats_td'><table><thead><th>HP</th><th>AC</th><th>STR</th><th>DEX</th><th>CON</th><th>INT</th><th>WIS</th><th>CHR</th></thead><tr><td id='HP_td'>" + val.hp +"</td><td id='AC_td'>" + val.ac +"</td><td id='STR_td'>" + val.str +"</td><td id='DEX_td'>" + val.dex +"</td><td id='CON_td'>" + val.con +"</td><td id='INT_td'>" + val.int +"</td><td id='WIS_td'>" + val.wis +"</td><td id='CHR_td'>" + val.chr +"</td></tr></table></td></tr></tbody></table><button type='button' class='btn btn-primary btn-sm' id='banish-npc-" + val.id + "'>BANISH NPC</button></div></div></div></div>");
-                    $('#npcs-table').append("fuck");
                 });
             },
             error: function(error) {

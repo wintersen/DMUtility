@@ -258,7 +258,7 @@ def edit_note():
 # get npcs for a campaign
 @app.route('/npcs', methods=['POST'])
 def get_npcs():
-    cid = str(request.form['cid'])
+    cid = str(session['cid'])
     con = sql.connect("DM.db", timeout=10)
     con.row_factory = dict_factory
     cur = con.cursor()
