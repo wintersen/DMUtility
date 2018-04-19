@@ -3,26 +3,52 @@ Fonts:
     font-family: 'MedievalSharp', cursive;
     font-family: 'UnifrakturMaguntia', cursive;
     font-family: 'Oleo Script Swash Caps', cursive;
-    
-*/
 
-/*First Page*/
-#welcome{
-    display:inherit;
-    background-image:url(https://img00.deviantart.net/3089/i/2015/072/0/e/concept_art_army_3hr_by_zudartslee-d8llxbx.jpg);
+*/
+.font1{
+    font-family: 'MedievalSharp', cursive;
+}
+.font2{
+    font-family: 'UnifrakturMaguntia', cursive;
+}
+.font3{
+    font-family: 'Oleo Script Swash Caps', cursive;
+}
+.mc1{
+    background-image: url(https://i.imgur.com/T8ggrGm.jpg);
+    background-position: center;
+}
+.mc2{
+    background: rgba(144,248,144,0.6);
+    background-position: center;
+}
+.modal-header{
+    font-family: serif;
+    border-bottom: transparent;
+}
+.modal-footer{
+    border-top: transparent;
+}
+
+
+
+/*Login Page*/
+#login{
+    display: block;
+    background-image: url(https://img00.deviantart.net/3089/i/2015/072/0/e/concept_art_army_3hr_by_zudartslee-d8llxbx.jpg);
     background-size: cover;
     background-position: center;
-    min-height: 100vh
+    min-height: 100vh;
 }
-#welcHead{
+#loginHead{
     font-family: 'MedievalSharp', cursive;
     font-weight: bolder;
     font-size: 55px;
 }
-#mainJumbo{
+#loginJumbo{
     background-color: rgba(218,243,248,0.5);
 }
-#mainIntro{
+#loginIntro{
     font-family: 'Oleo Script Swash Caps', cursive;
     color: rgb(230,230,230);
     font-size: 33px
@@ -37,15 +63,6 @@ Fonts:
     border-style:solid;
     border-color: royalblue;
 }
-.bkgd2{ /*For use in modal-content div*/
-    background-image: url(https://i.imgur.com/KqC7nch.jpg)
-}
-.mh{ /*Modal-header*/
-    border-bottom: transparent;
-}
-.mf{ /*Modal-footer*/
-    border-top: transparent;
-}
 /*For use in the "Save changes button in Login/Signup menu*/
 .sc{
     background-color: brown;
@@ -58,9 +75,11 @@ Fonts:
     border-color: brown;
 }
 
-/*Second Page*/
-#campain{
-   display:none;
+
+
+/*Campaign Selection Page*/
+#campaignselect{
+    display: none;
     background: url(https://img00.deviantart.net/b5fa/i/2017/193/1/a/snow_temple_by_zudartslee-dbg20mr.jpg);
     background-size: cover;
     background-position: center;
@@ -88,7 +107,7 @@ Fonts:
     text-decoration: underline;
     color: whitesmoke;
 }
-/*btn1 for various campaigns*/
+/*btn1 for various campaigns ------------------ ----------------*/
 #createCamp{
     background-color: darkslategrey;
     color: white;
@@ -99,3 +118,63 @@ Fonts:
     color:ghostwhite;
     border-color: white;
 }
+#campFooter{
+    color: ghostwhite;
+    font-size: 12px;
+}
+
+
+
+/*Campaign Home Page*/
+#home{
+    display: none;
+    background: url(https://img00.deviantart.net/dcea/i/2017/301/c/a/fox_by_zudartslee-dbryuif.jpg);
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+}
+.card{
+    font-family: 'MedievalSharp', cursive;
+    background: rgba(0,0,0, 0.4);
+    color: ghostwhite;
+}
+.btn-link{
+    font-family: serif;
+    color: ghostwhite
+}
+.btn2{
+    background-color: powderblue;
+    color: black;
+    border-color: powderblue;
+}
+.btn2:hover{
+    background-color: aliceblue;
+    color: black;
+    border-color: forestgreen;
+}
+.banish{
+    background-color: aliceblue;
+    color: black;
+    border-color: aliceblue;
+}
+.banish:hover{
+    background-color: darkslategrey;
+    color: ghostwhite;
+    border-color: darkred;
+}
+.sc2{
+    background-color: cornflowerblue;
+    color: white;
+    border-color: cornflowerblue;
+}
+.sc2:hover{
+    background-color: cadetblue;
+    color: ghostwhite;
+    border-color: forestgreen;
+}
+#campHomeFooter{
+    color: palegoldenrod;
+    font-size: 12px;
+}
+
+
