@@ -293,7 +293,7 @@ $(document).ready(function(){
                         "'>" + val.name + "</button></h5></div><div id='note-collapse-" + val.id + 
                         "' class='collapse' aria-labelledby='notes-heading-" + val.id + 
                         "' data-parent='#notes-acc-" + val.id + "'><div class='card-body'><p>" + val.content + 
-                        "</p><button type='button' class='btn btn-primary btn-sm' id='banish-note-" + val.id +
+                        "</p><button type='button' class='btn btn-primary btn-sm banish' id='banish-note-" + val.id +
                         "'>BANISH NOTE</button></div></div></div></div>");                    
                 });
             },
@@ -326,7 +326,7 @@ $(document).ready(function(){
                         "</td><td id='stats_td'><table><thead><th>HP</th><th>AC</th><th>STR</th><th>DEX</th><th>CON</th><th>INT</th><th>WIS</th><th>CHR</th></thead><tr><td id='HP_td'>" + val.hp +
                         "</td><td id='AC_td'>" + val.ac +"</td><td id='STR_td'>" + val.str +"</td><td id='DEX_td'>" + val.dex +"</td><td id='CON_td'>" + val.con +"</td><td id='INT_td'>" + val.int +
                         "</td><td id='WIS_td'>" + val.wis +"</td><td id='CHR_td'>" + val.chr +"</td></tr></table></td></tr></tbody></table>" + 
-                        "<button type='button' class='btn btn-primary btn-sm' id='banish-npc-" + val.id + "'>BANISH NPC</button></div></div></div></div>"
+                        "<button type='button' class='btn btn-primary btn-sm banish' id='banish-npc-" + val.id + "'>BANISH NPC</button></div></div></div></div>"
                     );
                 });
             },
@@ -359,7 +359,7 @@ $(document).ready(function(){
                         "</td><td id='mAC_td'>" + val.ac +"</td><td id='mSTR_td'>" + val.str +"</td><td id='mDEX_td'>" + val.dex +"</td><td id='mCON_td'>" + val.con +
                         "</td><td id='mINT_td'>" + val.int +"</td><td id='mWIS_td'>" + val.wis +"</td><td id='mCHR_td'>" + val.chr +
                         "</td></tr></table></td></tr></tbody></table><button type='button' id='banish-monster-" + val.id + 
-                        "' class='btn btn-primary btn-sm'>BANISH MONSTER</button></div></div></div></div>"       
+                        "' class='btn btn-primary btn-sm banish'>BANISH MONSTER</button></div></div></div></div>"       
                     );
                 });
             },

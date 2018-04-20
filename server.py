@@ -1,5 +1,5 @@
 #################################################################################
-# DMUtility - A DnD Dungeon Master's Ultimate Campaign Sheet                    #
+# DMK - A DnD Dungeon Master's Ultimate Campaign Sheet                          #
 # Developed by: KhepriCode                                                      #
 #                                                                               #
 # github.com/wintersen/DMUtility                                                #
