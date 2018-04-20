@@ -1,7 +1,13 @@
+#################################################################################
+# DMK - A DnD Dungeon Master's Ultimate Campaign Sheet                          #
+# Developed by: KhepriCode                                                      #
+#                                                                               #
+# github.com/wintersen/DMUtility                                                #
+#################################################################################
+
 import schema
 import sqlite3 as sql
 from flask import Flask, request, session, jsonify, render_template
-# from time import gmtime, strftime
 
 
 app = Flask(__name__, template_folder='static')
@@ -22,7 +28,7 @@ def dict_factory(cursor, row):
 # main
 #################################################################################
 
-
+# landing page
 @app.route("/")
 def main():
     con = sql.connect("DM.db", timeout=10)
@@ -34,7 +40,6 @@ def main():
     cur.execute(schema.create_notes_table)
     cur.execute(schema.create_npcs_table)
     cur.execute(schema.create_monsters_table)
-    cur.execute(schema.create_locations_table)
     con.commit()
     cur.close()
     con.close()
@@ -283,7 +288,7 @@ def get_npcs():
 @app.route('/newNpc', methods=['POST'])
 def new_npc():
     cid = str(session['cid'])
-    lid = str(0)
+    lid = request.form['lid']
     name = request.form['name']
     occ = request.form['occupation']
     desc = request.form['desc']
@@ -446,87 +451,6 @@ def edit_monster():
     cur = con.cursor()
     cur.execute(schema.create_monsters_table)
     cur.execute(schema.edit_monster, (name, equipment, note, strength, dex, scon, intel, wis, char, ac, hp, mid))
-    con.commit()
-    cur.close()
-    con.close()
-    return jsonify({
-        'edited': True
-    })
-
-#################################################################################
-# locations
-#################################################################################
-
-# get locations by campaign
-@app.route('/locations', methods=['POST'])
-def get_locations():
-    cid = str(request.form['cid'])
-    con = sql.connect("DM.db", timeout=10)
-    con.row_factory = dict_factory
-    cur = con.cursor()
-    cur.execute(schema.create_locations_table)
-    cur.execute(schema.get_locs, (cid,))
-    locs = cur.fetchall()
-    con.commit()
-    cur.close()
-    con.close()
-    return jsonify({
-        'locations': locs
-    })
-
-# new location
-@app.route('/newLocation', methods=['POST'])
-def new_loc():
-    cid = str(request.form['cid'])
-    name = request.form['name']
-    x = str(request.form['xcoord'])
-    y = str(request.form['ycoord'])
-    desc = request.form['desc']
-    note = request.form['note']
-    services = request.form['services']
-    con = sql.connect("DM.db", timeout=10)
-    con.row_factory = dict_factory
-    cur = con.cursor()
-    cur.execute(schema.create_locations_table)
-    cur.execute(schema.new_loc, (cid, name, x, y, desc, note, services))
-    con.commit()
-    cur.close()
-    con.close()
-    return jsonify({
-        'created': True
-    })
-
-# delete location
-@app.route('/locations', methods=['DELETE'])
-def delete_loc():
-    lid = str(request.form['lid'])
-    con = sql.connect("DM.db", timeout=10)
-    con.row_factory = dict_factory
-    cur = con.cursor()
-    cur.execute(schema.create_locations_table)
-    cur.execute(schema.delete_loc, (lid,))
-    con.commit()
-    cur.close()
-    con.close()
-    return jsonify({
-        'deleted': True
-    })
-
-# edit location
-@app.route('/editLocation', methods=['POST'])
-def edit_loc():
-    lid = str(request.form['lid'])
-    name = request.form['name']
-    x = str(request.form['xcoord'])
-    y = str(request.form['ycoord'])
-    desc = request.form['desc']
-    note = request.form['note']
-    services = request.form['services']
-    con = sql.connect("DM.db", timeout=10)
-    con.row_factory = dict_factory
-    cur = con.cursor()
-    cur.execute(schema.create_locations_table)
-    cur.execute(schema.edit_loc, (name, x, y, desc, note, services, lid))
     con.commit()
     cur.close()
     con.close()

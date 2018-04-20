@@ -15,8 +15,8 @@ Fonts:
     font-family: 'Oleo Script Swash Caps', cursive;
 }
 .mc1{
-    background-image: url(https://i.imgur.com/T8ggrGm.jpg);
-    background-position: center;
+    background-color: rgb(43,45,50);
+    color: white;
 }
 .mc2{
     background: rgba(144,248,144,0.6);
@@ -39,6 +39,7 @@ Fonts:
     background-size: cover;
     background-position: center;
     min-height: 100vh;
+    overflow: hidden;
 }
 #loginHead{
     font-family: 'MedievalSharp', cursive;
@@ -84,6 +85,7 @@ Fonts:
     background-size: cover;
     background-position: center;
     min-height: 100vh;
+    overflow: hidden;
 }
 #campHead{
     font-family: 'UnifrakturMaguntia', cursive;
@@ -91,7 +93,7 @@ Fonts:
     color: whitesmoke;
 }
 #campJumbo{
-    background-color: rgba(50,61,119,0.5);
+    background-color: rgba(33,40,64,0.5);
     font-size: 35px;
     font-weight: 600;
 }
@@ -120,7 +122,12 @@ Fonts:
 }
 #campFooter{
     color: ghostwhite;
+    background-color: rgb(34,38,54);
     font-size: 12px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
 }
 
 
@@ -134,8 +141,15 @@ Fonts:
     min-height: 100vh;
 }
 .card{
-    font-family: 'MedievalSharp', cursive;
     background: rgba(0,0,0, 0.4);
+}
+.card-header{
+    font-family: 'MedievalSharp', cursive;
+    font-size: 18px;
+    color: ghostwhite;
+}
+.card-body{
+    font-family: serif;
     color: ghostwhite;
 }
 .btn-link{
@@ -174,7 +188,26 @@ Fonts:
 }
 #campHomeFooter{
     color: palegoldenrod;
+    background-color: black;
     font-size: 12px;
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    width: 100%;
 }
-
-
+#logout-button {
+    top:1%;
+    right:1%;
+    position:absolute;
+    font-size: 24px;
+    background-color: rgba(250,0,0,0.8);
+    color: ghostwhite;
+}
+#back-button {
+    left: 1%;
+    top: 1%;
+    position: absolute;
+    font-size: 18px;
+    background-color: rgba(0,0,20,0.8);
+    color: ghostwhite;
+}
